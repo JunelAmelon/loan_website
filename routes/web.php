@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\DemandeController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClientController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,6 +15,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//clients routes
+Route::get('/', [ClientController::class, 'indexpage'])->name('indexpage');
+Route::get('login-user', [ClientController::class, 'view_login']);
+Route::get('/welcome', [ClientController::class, 'welcome'])->name('welcome');
+Route::post('/demande-pret', [DemandeController::class, 'create'])->name('demande-pret');
+Route::post('/annuler-demande', [DemandeController::class, 'deleteDemande'])->name('annuler-demande');
+
+
+
+//admin routes
+Route::get('/login', [ClientController::class, 'welcome'])->name('login-admin');
+Route::get('/dashboard', [ClientController::class, 'welcome'])->name('welcome-admin');
+

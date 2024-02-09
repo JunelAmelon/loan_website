@@ -3,7 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Models\Demande;
+use App\Models\User;
+use App\Notifications\NewLoanRequestNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class DemandeController extends Controller
@@ -30,6 +33,13 @@ class DemandeController extends Controller
 
         ]);
         $demande->save();
+
+// Envoi de la notification à l'administrateur
+        $admin = User::where('role', 'admin')->first(); // Assurez-vous que le modèle User contient le champ 'role'
+        Notification::send($admin, new NewLoanRequestNotification());
+
+// Redirection ou autre logique après la création de la demande
+        return redirect()->route('nom_de_votre_route')->with('success', 'Votre demande a été envoyé');
 
     }
 
@@ -63,7 +73,6 @@ class DemandeController extends Controller
     public function deleteDemande()
     {
         $userId = Session::get('id_utilisateur');
-
         $demande = Demande::where('client_id', $userId)->first();
         $statut = $demande->statut;
         if ($statut == 'valide') {
