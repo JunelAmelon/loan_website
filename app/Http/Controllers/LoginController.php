@@ -21,7 +21,7 @@ class LoginController extends Controller
     {
         // Validation des informations de connexion
         $credentials = $request->validate([
-            'id_user' => ['required'],
+            'email' => ['required'],
             'password' => ['required'],
         ]);
 
@@ -32,36 +32,36 @@ class LoginController extends Controller
 
             // Récupération de l'utilisateur authentifié
             $user = Auth::user();
-            $id_user = $user->id_user;
+            $id_user = $user->email;
             Session::put('id_utilisateur', $id_user);
 
             // Vérification du statut de l'utilisateur pour rediriger en conséquence
             if ($user->role == 'client') {
                 // Redirection vers la page d'accueil de l'étudiant
                 $user = Auth::user();
-                $id_user = $user->id_user;
-                $client = Client::where('id_client', $id_user)->first();
+                $email_user = $user->email;
+                $client = Client::where('email', $email_user)->first();
                 Session::put('prenom', $client->prenom);
-
-                return redirect()->route('Client_home')->with('success', 'Connexion réussie en tant que client.');
+                Session::put('email',  $email_user);
+                return redirect()->route('welcome')->with('success', 'Connexion réussie en tant que client.');
             } elseif ($user->role === 'admin') {
                 $user = Auth::user();
-                $id_user = $user->id_user;
-                $admin = Admin::where('id_admin', $id_user)->first();
+                $email_user = $user->email;
+                $admin = Admin::where('id', $id_user)->first();
                 Session::put('prenom', $admin->prenom);
 
                 // Redirection vers la page d'accueil de l'administrateur
-                return redirect()->route('admin')->with('success', 'Connexion réussie en tant qu\'administrateur.');
+                return redirect()->route('welcome-admin')->with('success', 'Connexion réussie en tant qu\'administrateur.');
             } else {
                 // Redirection par défaut si le type d'utilisateur n'est pas géré
-                return redirect()->route('acceuil')->with('success', 'Type d\'utilisateur non pris en compte');
+                return redirect()->route('indexpage')->with('error', 'Type d\'utilisateur non pris en compte');
             }
         }
 
         // Redirection en arrière avec des erreurs si l'authentification échoue
         return back()
             ->withErrors([
-                'id_user' => 'Les informations d\'identification fournies ne correspondent à aucun enregistrement.',
+                'email' => 'Les informations d\'identification fournies ne correspondent à aucun enregistrement.',
             ]);
 
     }
@@ -71,6 +71,6 @@ class LoginController extends Controller
         if (Auth::user()) {
             Auth::logout();
         }
-        return redirect()->route('acceuil');
+        return redirect()->route('indexpage');
     }
 }

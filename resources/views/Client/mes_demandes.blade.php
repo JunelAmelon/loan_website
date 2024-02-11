@@ -33,7 +33,7 @@
 <body>
 
   <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
+ <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
@@ -46,95 +46,98 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="/index" class="">Home</a></li>
-
+          <li><a href="/welcome" class="active">Home</a></li>
+           <li><a  href="/mes-demandes">demandes</a></li>
+            <li><a  href="/demande">pret</a></li>
+          <li><a   href="#contact">Contact</a></li>
+           <li><a   href="{{ route('deconnexion') }}">log out</a></li>
         </ul>
       </nav><!-- .navbar -->
 
     </div>
   </header><!-- End Header -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
+  <main id="main">
 
-    <div class="info d-flex align-items-center">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 text-center">
-            <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
-            <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a  href="#get-started" class="btn-get-started">Login</a>
-          </div>
-        </div>
+    <!-- ======= Breadcrumbs ======= -->
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/blog/blog-5.jpg');">
+      <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
+
+        <h2>Demandes</h2>
+        <ol>
+          <li><a href="index.html">Home</a></li>
+          <li>Mes demandes</li>
+        </ol>
+
       </div>
-    </div>
+    </div><!-- End Breadcrumbs -->
 
-    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/startup-593341_1280.jpg )"></div>
-  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-5.jpg)"></div>
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+      <div class="container" data-aos="fade-up">
 
-    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/hijab-3064633_1280.jpg)"></div>
-     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-2.jpg)"></div>
+        <div class="row gy-4">
 
-      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+            <div class="service-item  position-relative">
+              <!-- <div class=" icon">
+                <i class="bi-ui-checks-grid"></i>
+              </div> -->
+              <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
+              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
+            <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
+             </div>
+          </div><!-- End Service Item -->
 
-      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
-
-    </div>
-
-  </section><!-- End Hero Section -->
-
- <!-- ======= Get Started Section ======= -->
-    <section id="get-started loan" class="get-started section-bg">
-      <div class="container">
-
-        <div class="row justify-content-between gy-4 ">
-
-
-          <div class="col-lg-6 offset-lg-3 " data-aos="fade">
-            <form action="{{route('signTreat')}}" method="post" class="form-line">
-                @csrf
-              <h1 style="text-align: center;">LOGIN</h1>
-              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
-              <div class="row gy-3">
-
-                <div class="col-md-12">
-                  <input type="email" name="email" class="form-control" placeholder="email" required>
-                </div>
-
-                <div class="col-md-12 ">
-                  <input type="password" class="form-control" name="password" placeholder="password" required>
-                </div>
-
-
-
-                  <button type="submit" style="width:30%;">Sign in</button>
-                </div>
-
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
+            <div class="service-item position-relative">
+              <!-- <div class="icon">
+                <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+              </div> -->
+            <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
+               <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+              <div style="display:flex; flex-direction: row;">
+                <button class="btn readmore stretched-link" style="color:white; background-color:yellowgreen; border: 1px solid yellowgreen; margin-right: 2%;">Pending</button>
+                <button class="btn readmore stretched-link" style="color:white; background-color:red; border: 1px solid red;">Delete</button>
+         
               </div>
-            </form>
-          </div><!-- End Quote Form -->
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
+            <div class="service-item position-relative">
+              <!-- <div class="icon">
+                <i class="fa-solid fa-compass-drafting"></i>
+              </div> -->
+             <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
+              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
+             <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
+            </div>
+          </div><!-- End Service Item -->
+
+          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="service-item position-relative">
+              <!-- <div class="icon">
+                <i class="fa-solid fa-trowel-bricks"></i>
+              </div> -->
+             <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
+             <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
+              <button class="btn readmore stretched-link" style="color:white; background-color:brown; border: 1px solid brown;">Reject</button>
+         </div>
+          </div><!-- End Service Item -->
+ 
+ 
 
         </div>
 
       </div>
-    </section><!-- End Get Started Section -->
+    </section><!-- End Services Section -->
 
 
-
-
-
-
-
-
-
+  </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
+   <footer id="footer" class="footer">
 
     <div class="footer-content position-relative">
       <div class="container">
@@ -208,8 +211,7 @@
   <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
   <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
+ <!-- Vendor JS Files -->
   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
   <script src="assets/vendor/aos/aos.js"></script>
   <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>

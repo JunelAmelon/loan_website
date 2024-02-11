@@ -65,7 +65,7 @@
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
             <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Get Started</a>
+            <a data-aos="fade-up" data-aos-delay="200" href="/login" class="btn-get-started">Get Started</a>
           </div>
         </div>
       </div>
@@ -181,8 +181,8 @@
                 </div>
 
                 <div class="col-md-12 text-center">
-                 
-                  <button type="submit">Get a lone</button>
+
+                  <button type="submit"><a href="/login" style="color: white;">Get a lone</a></button>
                 </div>
 
               </div>
@@ -374,8 +374,8 @@
 
   <main id="main">
 
-    <!-- ======= loan Section ======= -->
-    <section id="loan" class="loan">
+    <!-- ======= contact Section ======= -->
+    <section id="contact" class="loan">
       <div class="container" data-aos="fade-up" data-aos-delay="100">
 
         <div class="row gy-4">
@@ -426,11 +426,11 @@
               <div class="form-group">
                 <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
               </div>
-              
+
               <div class="text-center"><button type="submit">Send Message</button></div>
             </form>
           </div><!-- End Contact Form -->
-         
+
 
   </main><!-- End #main -->
 

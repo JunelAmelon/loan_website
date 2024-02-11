@@ -63,7 +63,7 @@
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
             <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a  href="#get-started" class="btn-get-started">Login</a>
+            <a  href="#get-started" class="btn-get-started">sign up</a>
           </div>
         </div>
       </div>
@@ -96,23 +96,55 @@
 
 
           <div class="col-lg-6 offset-lg-3 " data-aos="fade">
-            <form action="{{route('signTreat')}}" method="post" class="form-line">
+            <form action="{{route('registerTreat')}}" method="post" class="form-line">
                 @csrf
-              <h1 style="text-align: center;">LOGIN</h1>
+              <h1 style="text-align: center;">SIGN UP</h1>
               <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
               <div class="row gy-3">
 
                 <div class="col-md-12">
                   <input type="email" name="email" class="form-control" placeholder="email" required>
                 </div>
+                  <div class="col-md-12">
+                  <input type="text" name="nom" class="form-control" placeholder="nom" required>
+                </div>
+
+                  <div class="col-md-12">
+                  <input type="text" name="prenom" class="form-control" placeholder="prenom" required>
+                </div>
+                <div class="col-md-12">
+                  <input type="date" name="date_naissance" class="form-control" placeholder="prenom" required>
+                </div>
+                <div class="col-md-12">
+                  <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
+                </div>
+                 <div class="col-md-12">
+                  <input type="text" name="adresse" class="form-control" placeholder="adresse" required>
+                </div>
+
+    <div style="display: flex; flex-direction: row; ">
+          <label style="margin-right: 1%; ">Entrez votre sexe :</label>
+        <input type="radio" id="M" name="sexe" value="M" style="margin-right: 1%; ">
+        <label for="M" style="margin-right: 1%; ">M</label>
+
+        <input type="radio" id="F" name="sexe" value="F" style="margin-right: 1%; ">
+        <label for="F" style="margin-right: 1%; ">F</label>
+        <input type="radio" id="autre" name="sexe" value="autre" style="margin-right: 1%; ">
+        <label for="autre" style="margin-right: 1%; ">autre</label>
+
+    </div>
+
 
                 <div class="col-md-12 ">
                   <input type="password" class="form-control" name="password" placeholder="password" required>
                 </div>
+                  <div class="col-md-12 ">
+                  <input type="password" class="form-control" name="password_confirmed" placeholder=" confirm password" required>
+                </div>
 
 
 
-                  <button type="submit" style="width:30%;">Sign in</button>
+                  <button type="submit" style="width:30%;">Sign up</button>
                 </div>
 
               </div>

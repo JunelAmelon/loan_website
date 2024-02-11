@@ -6,6 +6,7 @@ use App\Models\Demande;
 use App\Models\User;
 use App\Notifications\NewLoanRequestNotification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
@@ -13,7 +14,11 @@ class DemandeController extends Controller
 {
     //
     public function create(Request $request)
-    {
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         // Logique pour créer une demande de prêt
         $userId = Session::get('id_utilisateur');
 
@@ -43,18 +48,50 @@ class DemandeController extends Controller
 
     }
 
-    public function index(Request $request)
+    public function seeDemande()
     {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
+        return view('Client.mes_demandes');
+
+    }
+
+    public function makeDemandeView()
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
+        return view('Client.make_demande');
+
+    }
+
+    public function index(Request $request)
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         // Afficher toutes les demandes de prêt (validées et non validées) à l'administrateur
     }
 
     public function approve(Request $request, $loanId)
-    {
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         // Logique pour approuver une demande de prêt
     }
 
     public function DemandeStatut()
-    {
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         $userId = Session::get('id_utilisateur');
 
         $demande = Demande::where('client_id', $userId)->first();
@@ -71,7 +108,11 @@ class DemandeController extends Controller
     }
 
     public function deleteDemande()
-    {
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         $userId = Session::get('id_utilisateur');
         $demande = Demande::where('client_id', $userId)->first();
         $statut = $demande->statut;
@@ -84,7 +125,11 @@ class DemandeController extends Controller
     }
 
     public function crediteAccount()
-    {
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
+
         $userId = Session::get('id_utilisateur');
 
         $demande = Demande::where('client_id', $userId)->first();

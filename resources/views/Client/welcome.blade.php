@@ -9,6 +9,8 @@
   <meta content="" name="description">
   <meta content="" name="keywords">
 
+
+
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -50,7 +52,7 @@
            <li><a  href="/mes-demandes">demandes</a></li>
             <li><a  href="/demande">pret</a></li>
           <li><a   href="#contact">Contact</a></li>
-           <li><a   href="#">log out</a></li>
+           <li><a   href="{{ route('deconnexion') }}">log out</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -66,7 +68,7 @@
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
             <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a data-aos="fade-up" data-aos-delay="200" href="#get-started" class="btn-get-started">Junel BOKO <span><i class="bi-person-workspace"></i></span></a>
+            <a data-aos="fade-up" data-aos-delay="200" href="#" class="btn-get-started">@if (Session::has('prenom')){{ Session::get('prenom') }} @endif <span><i class="bi-person-workspace"></i></span></a>
           </div>
         </div>
       </div>
@@ -169,7 +171,7 @@
               <div class="row gy-3">
 
                 <div class="col-md-12">
-                  <input type="email" name="email" class="form-control" placeholder="email" required>
+                  <input type="email" name="email" class="form-control" placeholder="email" value="@if (Session::has('email')){{ Session::get('email') }} @endif " required>
                 </div>
 
                 <div class="col-md-12 ">
@@ -181,6 +183,10 @@
                   <textarea class="form-control" name="description" rows="6" placeholder="Project description" required></textarea>
                 </div>
 
+                 <div class="col-md-12 text-center">
+                 
+                  <button type="submit">Get a lone</button>
+                </div>
                     </div>
 
               </div>
