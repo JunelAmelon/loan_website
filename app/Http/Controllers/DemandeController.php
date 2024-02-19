@@ -4,48 +4,55 @@ namespace App\Http\Controllers;
 
 use App\Models\Demande;
 use App\Models\User;
-use App\Notifications\NewLoanRequestNotification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Session;
 
 class DemandeController extends Controller
 {
     //
     public function create(Request $request)
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
-
-        // Logique pour créer une demande de prêt
+    { // Vérification si le client a déjà une demande en attente
         $userId = Session::get('id_utilisateur');
+
+        $demandeEnAttente = Demande::where('client_id', $userId)->where('statut', 'pending')->first();
+
+        if ($demandeEnAttente) {
+            return back()->with('error', 'Vous avez déjà une demande en attente. Veuillez patienter avant de soumettre une nouvelle demande.');
+        }
 
         // Validation des données du formulaire
         $request->validate([
-            'projet' => 'required',
-            'description' => 'required',
-            'montant_voulue' => 'required',
-            'payement_months' => 'required|string',
+            'projet' => 'required|string',
+            'description' => 'required|string',
+            'montant_voulue' => 'required|numeric|min:25000',
         ]);
+
+        // Récupération du montant demandé
+        $montantDemande = $request->input('montant_voulue');
+
+        // Calcul du montant à payer par mois (4% par mois)
+        $pourcentageMensuel = 0.04 / 12;
+        $montantParMois = $montantDemande * $pourcentageMensuel;
+
+        // Création de la demande
         $demande = new Demande([
+            'projet' => $request->input('projet'),
+            'description' => $request->input('description'),
+            'montant_voulu' => $montantDemande,
+            'payement_months' => $montantParMois,
             'client_id' => $userId,
-            'projet' => $request->projet,
-            'description' => $request->description,
-            'montant_voulue' => $request->montant_voulue,
-            'payement_months' => $request->payement_months,
-
         ]);
-        $demande->save();
 
-// Envoi de la notification à l'administrateur
-        $admin = User::where('role', 'admin')->first(); // Assurez-vous que le modèle User contient le champ 'role'
-        Notification::send($admin, new NewLoanRequestNotification());
+        // Enregistrement de la demande dans la base de données
+        try {
+            $demande->save();
 
-// Redirection ou autre logique après la création de la demande
-        return redirect()->route('nom_de_votre_route')->with('success', 'Votre demande a été envoyé');
-
+            return redirect()->route('welcome')->with('success', 'Demande de prêt enregistrée avec succès.');
+        } catch (\Exception $e) {
+            // Erreur d'enregistrement
+            return back()->with('error', 'Erreur lors de l\'enregistrement de la demande de prêt.');
+        }
     }
 
     public function seeDemande()
@@ -54,8 +61,14 @@ class DemandeController extends Controller
             Auth::logout();
             return redirect()->route('indexpage');
         }
-        return view('Client.mes_demandes');
+        // Récupérer l'ID de l'utilisateur connecté
+        $userId = Auth::id();
 
+        // Récupérer les demandes associées à l'utilisateur
+        $demandes = Demande::where('client_id', $userId)->get();
+
+        // Passer les demandes à la vue
+        return view('Client.mes_demandes', compact('demandes'));
     }
 
     public function makeDemandeView()
@@ -68,15 +81,6 @@ class DemandeController extends Controller
 
     }
 
-    public function index(Request $request)
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
-
-        // Afficher toutes les demandes de prêt (validées et non validées) à l'administrateur
-    }
-
     public function approve(Request $request, $loanId)
     {if (!Auth::user()) {
         Auth::logout();
@@ -86,28 +90,7 @@ class DemandeController extends Controller
         // Logique pour approuver une demande de prêt
     }
 
-    public function DemandeStatut()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
-
-        $userId = Session::get('id_utilisateur');
-
-        $demande = Demande::where('client_id', $userId)->first();
-        $statut = $demande->statut;
-        if ($statut == 'valide') {
-            return view('Client_home')->with('demande_statut', 'Votre demande a déjà été validé');
-
-        } elseif ($statut == 'n_valide') {
-            return view('Client_home')->with('demande_statut', 'Votre demande n\'a pas été validé');
-        } else {
-            return view('Client_home')->with('demande_statut', 'Votre demande est en cours de traitement');
-
-        }
-    }
-
-    public function deleteDemande()
+    public function reject()
     {if (!Auth::user()) {
         Auth::logout();
         return redirect()->route('indexpage');

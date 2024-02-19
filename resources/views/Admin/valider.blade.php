@@ -61,7 +61,7 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets-admin/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">K. Anderson</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -126,7 +126,7 @@
 
     <li class="nav-item">
         <a class="nav-link collapsed" href="/valider">
-          <i class="bi bi-card-list"></i>
+               <i class="bi bi-person-fill"></i>
           <span>Valider des demandes</span>
         </a>
       </li><!-- End Register Page Nav -->
@@ -165,54 +165,39 @@
               <h5 class="card-title">Liste des demandes en attentes</h5>
               
               <!-- Table with stripped rows -->
-             <table class="table  datatable"  style="width: 100%;">
-                    <thead>
-                      <tr>
-                        <th scope="col">#</th>
-                        <th scope="col">Client</th>
-                        <th scope="col">projet</th>
-                        <th scope="col">montant</th>
-                        <th scope="col">statut</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <th scope="row"><a href="#">#2457</a></th>
-                        <td>Brandon Jacob</td>
-                        <td><a href="#" class="text-primary">At praesentium minu</a></td>
-                        <td>$64</td>
-                        <td><div style="display: flex; flex-direction:row;"><button class="badge bg-success" style="margin-right: 1%;">approuver</button> <button class="badge bg-danger">rejeter</button></div></td>
-                      </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2147</a></th>
-                        <td>Bridie Kessler</td>
-                        <td><a href="#" class="text-primary">Blanditiis dolor omnis similique</a></td>
-                        <td>$47</td>
-                        <td><div style="display: flex; flex-direction:row;"><button class="badge bg-success" style="margin-right: 1%;">approuver</button> <button class="badge bg-danger">rejeter</button></div></td>
-                       </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2049</a></th>
-                        <td>Ashleigh Langosh</td>
-                        <td><a href="#" class="text-primary">At recusandae consectetur</a></td>
-                        <td>$147</td>
-                      <td><div style="display: flex; flex-direction:row;"><button class="badge bg-success" style="margin-right: 1%;">approuver</button> <button class="badge bg-danger">rejeter</button></div></td>
-                        </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Angus Grady</td>
-                        <td><a href="#" class="text-primar">Ut voluptatem id earum et</a></td>
-                        <td>$67</td>
-                         <td><div style="display: flex; flex-direction:row;"><button class="badge bg-success" style="margin-right: 1%;">approuver</button> <button class="badge bg-danger">rejeter</button></div></td>
-                    </tr>
-                      <tr>
-                        <th scope="row"><a href="#">#2644</a></th>
-                        <td>Raheem Lehner</td>
-                        <td><a href="#" class="text-primary">Sunt similique distinctio</a></td>
-                        <td>$165</td>
-                        <td><div style="display: flex; flex-direction:row;"><button class="badge bg-success" style="margin-right: 1%;">approuver</button> <button class="badge bg-danger">rejeter</button></div></td>
-                       </tr>
-                    </tbody>
-                  </table>
+             <!-- Ajoutez le code HTML pour afficher la liste des clients et les options de validation/rejet -->
+<table class="table datatable">
+   <thead>
+      <tr>
+         <th scope="col">#</th>
+         <th scope="col">Nom</th>
+         <th scope="col">Prénom</th>
+         <th scope="col">Actions</th>
+      </tr>
+   </thead>
+   <tbody>
+      @foreach($clients as $client)
+      <tr>
+         <th scope="row">{{ $client->id }}</th>
+         <td>{{ $client->nom }}</td>
+         <td>{{ $client->prenom }}</td>
+         <td>
+            <div style="display: flex; flex-direction:row;">
+               <form action="{{ route('approuver', ['id_demande' => $client->id]) }}" method="post">
+                  @csrf
+                  <button type="submit" class="badge bg-success" style="margin-right: 1%;">Valider</button>
+               </form>
+               <form action="{{ route('reject', ['id_demande' => $client->id]) }}" method="post">
+                  @csrf
+                  <button type="submit" class="badge bg-danger">Rejeter</button>
+               </form>
+            </div>
+         </td>
+      </tr>
+      @endforeach
+   </tbody>
+</table>
+
               <!-- End Table with stripped rows -->
 
             </div>

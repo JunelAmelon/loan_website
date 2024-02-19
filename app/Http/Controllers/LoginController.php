@@ -32,8 +32,10 @@ class LoginController extends Controller
 
             // Récupération de l'utilisateur authentifié
             $user = Auth::user();
-            $id_user = $user->email;
-            Session::put('id_utilisateur', $id_user);
+            $email = $user->email;
+            $id= $user->id;
+            Session::put('email_utilisateur', $email);
+             Session::put('id_utilisateur', $id);
 
             // Vérification du statut de l'utilisateur pour rediriger en conséquence
             if ($user->role == 'client') {
@@ -46,10 +48,10 @@ class LoginController extends Controller
                 return redirect()->route('welcome')->with('success', 'Connexion réussie en tant que client.');
             } elseif ($user->role === 'admin') {
                 $user = Auth::user();
-                $email_user = $user->email;
-                $admin = Admin::where('id', $id_user)->first();
+                $email_admin = $user->email;
+                $admin = Admin::where('id', $id)->first();
                 Session::put('prenom', $admin->prenom);
-
+                Session::put('email-admin', $email_admin);
                 // Redirection vers la page d'accueil de l'administrateur
                 return redirect()->route('welcome-admin')->with('success', 'Connexion réussie en tant qu\'administrateur.');
             } else {

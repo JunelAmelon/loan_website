@@ -5,10 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Client;
 use App\Models\Remboursement;
 use App\Models\User;
+use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-
+use Illuminate\Support\Facades\DB;
 class ClientController extends Controller
 {
     //
@@ -40,23 +41,19 @@ class ClientController extends Controller
     }
     public function create(Request $request)
     {
-        if (!Auth::user()) {
-            Auth::logout();
-            return redirect()->route('indexpage');
-        }
-
+       
         // Logique pour créer un compte utilisateur
 
         // Validation des données du formulaire
         $request->validate([
-            'email' => 'required|email|unique:clients', // Ajoutez la règle unique pour s'assurer que l'email est unique dans la table clients
+            'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
             'nom' => 'required|string',
             'prenom' => 'required|string',
-            'sexe' => 'required|string',
             'date_naissance' => 'required|string',
             'lieu_naissance' => 'required|string',
             'adresse' => 'required|string',
-            'password' => 'required|min:6', // Vous pouvez personnaliser les règles de validation du mot de passe
+            'sexe' => 'required|string',
+            'password' => 'required|min:6', 
             'password_confirmed' => 'required|same:password',
         ]);
 
@@ -69,6 +66,7 @@ class ClientController extends Controller
                 'password' => bcrypt($request->password),
                 'role' => 'client',
             ]);
+
 
             $user->save();
 
@@ -149,7 +147,7 @@ class ClientController extends Controller
         }
 
         // Redirection avec un message de succès
-        return redirect()->route('nom_de_votre_route')->with('success', 'Profil mis à jour avec succès.');
+        return redirect()->route('my_route_name')->with('success', 'Profil mis à jour avec succès.');
     }
 
     public function rest_to_pay()
@@ -174,6 +172,22 @@ class ClientController extends Controller
             // Gérer le cas où aucun remboursement n'est trouvé
             return view('nom_de_votre_vue', ['montantRestant' => 0]); // Ou une valeur par défaut
         }
+    }
+
+      public function seeDemande()
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
+        // Récupérer l'ID de l'utilisateur connecté
+        $userId = Auth::id();
+
+        // Récupérer les demandes associées à l'utilisateur
+        $demandes = Demande::where('client_id', $userId)->get();
+
+        // Passer les demandes à la vue
+        return view('Client.mes_demandes', compact('demandes'));
     }
 
 }

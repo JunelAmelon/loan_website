@@ -36,9 +36,7 @@
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="/" class="logo d-flex align-items-center">
         <h1>SociáIní  Půjčka a.s<span>.</span></h1>
       </a>
 
@@ -46,7 +44,7 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="/index" class="active">Home</a></li>
+          <li><a href="/" class="active">Home</a></li>
           <li><a  href="#about">About</a></li>
           <li><a  href="#services">Services</a></li>
           <li><a   href="#contact">Contact</a></li>
@@ -70,13 +68,14 @@
         </div>
       </div>
     </div>
+ <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/defile5.jpg )"></div>
+  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile2.jpg)"></div>
 
-    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/startup-593341_1280.jpg )"></div>
-  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-5.jpg)"></div>
-
-    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/hijab-3064633_1280.jpg)"></div>
-     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-2.jpg)"></div>
+    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile3.jpg)"></div>
+     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile4.jpg)"></div>
+ <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile.jpg)"></div>
+     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile6.jpg)"></div>
 
       <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
@@ -98,7 +97,7 @@
       <div class="container" data-aos="fade-up">
 
         <div class="row justify-content-around gy-4">
-          <div class="col-lg-6 img-bg" style="background-image: url(assets/img/blog-recent-2.jpg);" data-aos="zoom-in" data-aos-delay="100"></div>
+          <div class="col-lg-6 img-bg" style="background-image: url(assets/img/defile6.jpg);" data-aos="zoom-in" data-aos-delay="100"></div>
 
           <div class="col-lg-5 d-flex flex-column justify-content-center">
             <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
@@ -166,15 +165,12 @@
               <h3>Get a lone</h3>
               <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
               <div class="row gy-3">
-
-                <div class="col-md-12">
-                  <input type="email" name="email" class="form-control" placeholder="email" required>
-                </div>
-
-                <div class="col-md-12 ">
+               <div class="col-md-12 ">
                   <input type="number" class="form-control" name="montant" placeholder="Montant" required>
                 </div>
-
+                <div class="col-md-12">
+                  <input type="text" name="projet" class="form-control" placeholder="Project " required>
+                </div>
 
                 <div class="col-md-12">
                   <textarea class="form-control" name="description" rows="6" placeholder="Project description" required></textarea>
@@ -227,8 +223,7 @@
               </div>
               <h3>Nesciunt Mete</h3>
               <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-              <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
+                </div>
           </div><!-- End Service Item -->
 
 
@@ -240,8 +235,7 @@
               </div>
               <h3>Velit Doloremque</h3>
               <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
-              <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
+               </div>
           </div><!-- End Service Item -->
 
           <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
@@ -251,8 +245,7 @@
               </div>
               <h3>Dolori Architecto</h3>
               <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-              <a href="service-details.html" class="readmore stretched-link">Learn more <i class="bi bi-arrow-right"></i></a>
-            </div>
+               </div>
           </div><!-- End Service Item -->
 
         </div>

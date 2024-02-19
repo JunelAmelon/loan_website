@@ -36,7 +36,7 @@
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/" class="logo d-flex align-items-center">
         <!-- Uncomment the line below if you also wish to use an image logo -->
         <!-- <img src="assets/img/logo.png" alt=""> -->
         <h1>SociáIní  Půjčka a.s<span>.</span></h1>
@@ -46,8 +46,9 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="/index" class="">Home</a></li>
-
+          <li><a href="/" class="">Home</a></li>
+          <li><a href="/login" class="">Login</a></li>
+          <li><a href="/register" class="">Register</a></li>
         </ul>
       </nav><!-- .navbar -->
 
@@ -55,7 +56,7 @@
   </header><!-- End Header -->
 
   <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
+  <section id="hero" class="hero" style="height: 80vh;">
 
     <div class="info d-flex align-items-center">
       <div class="container">
@@ -63,20 +64,21 @@
           <div class="col-lg-6 text-center">
             <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
             <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a  href="#get-started" class="btn-get-started">Login</a>
+            
           </div>
         </div>
       </div>
     </div>
 
-    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/startup-593341_1280.jpg )"></div>
-  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-5.jpg)"></div>
+ <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/defile5.jpg )"></div>
+  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile2.jpg)"></div>
 
-    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/hijab-3064633_1280.jpg)"></div>
-     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/blog-recent-2.jpg)"></div>
-
-      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile3.jpg)"></div>
+     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile4.jpg)"></div>
+ <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile.jpg)"></div>
+     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile6.jpg)"></div>
+          <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
       </a>
 
@@ -98,8 +100,8 @@
           <div class="col-lg-6 offset-lg-3 " data-aos="fade">
             <form action="{{route('signTreat')}}" method="post" class="form-line">
                 @csrf
-              <h1 style="text-align: center;">LOGIN</h1>
-              <p>Vel nobis odio laboriosam et hic voluptatem. Inventore vitae totam. Rerum repellendus enim linead sero park flows.</p>
+              <h1 style="text-align: center; padding-bottom:10%;">LOGIN</h1>
+              <p>   </p>
               <div class="row gy-3">
 
                 <div class="col-md-12">

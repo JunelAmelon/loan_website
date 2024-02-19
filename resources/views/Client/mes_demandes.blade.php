@@ -36,9 +36,8 @@
  <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="/" class="logo d-flex align-items-center">
+
         <h1>SociáIní  Půjčka a.s<span>.</span></h1>
       </a>
 
@@ -48,7 +47,6 @@
         <ul>
           <li><a href="/welcome" class="active">Home</a></li>
            <li><a  href="/mes-demandes">demandes</a></li>
-            <li><a  href="/demande">pret</a></li>
           <li><a   href="#contact">Contact</a></li>
            <li><a   href="{{ route('deconnexion') }}">log out</a></li>
         </ul>
@@ -60,78 +58,51 @@
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/blog/blog-5.jpg');">
+    <div class="breadcrumbs d-flex align-items-center" style="background-image: url('assets/img/defile5.jpg');">
       <div class="container position-relative d-flex flex-column align-items-center" data-aos="fade">
 
         <h2>Demandes</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li>Mes demandes</li>
         </ol>
 
       </div>
     </div><!-- End Breadcrumbs -->
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+  <div class="container" data-aos="fade-up">
 
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
+    <div class="row gy-4">
+      @foreach($demandes as $demande)
+        <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+          <div class="service-item position-relative">
+            <h2 style="border-bottom: 4px solid #ebebed; font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px;">Title: {{ $demande->projet }}</h2>
+            <p>{{ $demande->description }}</p>
 
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <!-- <div class=" icon">
-                <i class="bi-ui-checks-grid"></i>
-              </div> -->
-              <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-            <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
-             </div>
-          </div><!-- End Service Item -->
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="service-item position-relative">
-              <!-- <div class="icon">
-                <i class="fa-solid fa-arrow-up-from-ground-water"></i>
-              </div> -->
-            <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
-               <p>Ut autem aut autem non a. Sint sint sit facilis nam iusto sint. Libero corrupti neque eum hic non ut nesciunt dolorem.</p>
+            @if($demande->statut == 'pending')
               <div style="display:flex; flex-direction: row;">
-                <button class="btn readmore stretched-link" style="color:white; background-color:yellowgreen; border: 1px solid yellowgreen; margin-right: 2%;">Pending</button>
-                <button class="btn readmore stretched-link" style="color:white; background-color:red; border: 1px solid red;">Delete</button>
-         
+                <button class="btn readmore stretched-link" style="color:white; background-color:darkblue;  border: 1px solid darkblue; margin-right: 2%;">Pending</button>
+                <button class="btn readmore stretched-link" style="color:white; background-color:crimson; border: 1px solid crimson; ">Delete</button>
               </div>
-            </div>
-          </div><!-- End Service Item -->
+            @elseif($demande->statut == 'valide')
+              <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
+             @elseif($demande->statut == 'rejeter')
+              <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">rejeter</button>
+             @else
+             <div>
+              en cours
+             </div>
+              @endif
+          </div>
+        </div><!-- End Service Item -->
+      @endforeach
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="service-item position-relative">
-              <!-- <div class="icon">
-                <i class="fa-solid fa-compass-drafting"></i>
-              </div> -->
-             <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
-              <p>Ut excepturi voluptatem nisi sed. Quidem fuga consequatur. Minus ea aut. Vel qui id voluptas adipisci eos earum corrupti.</p>
-             <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
-            </div>
-          </div><!-- End Service Item -->
+    </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="service-item position-relative">
-              <!-- <div class="icon">
-                <i class="fa-solid fa-trowel-bricks"></i>
-              </div> -->
-             <h2 style=" border-bottom: 4px solid #ebebed;   font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px; ">Nesciunt Mete</h2>
-             <p>Non et temporibus minus omnis sed dolor esse consequatur. Cupiditate sed error ea fuga sit provident adipisci neque.</p>
-              <button class="btn readmore stretched-link" style="color:white; background-color:brown; border: 1px solid brown;">Reject</button>
-         </div>
-          </div><!-- End Service Item -->
- 
- 
+  </div>
+</section><!-- End Services Section -->
 
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
 
 
   </main><!-- End #main -->

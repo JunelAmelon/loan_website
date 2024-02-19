@@ -36,9 +36,8 @@
  <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
-        <!-- Uncomment the line below if you also wish to use an image logo -->
-        <!-- <img src="assets/img/logo.png" alt=""> -->
+      <a href="/" class="logo d-flex align-items-center">
+       
         <h1>SociáIní  Půjčka a.s<span>.</span></h1>
       </a>
 
@@ -65,7 +64,7 @@
 
         <h2>Demandes</h2>
         <ol>
-          <li><a href="index.html">Home</a></li>
+          <li><a href="/">Home</a></li>
           <li>Faire une demande</li>
         </ol>
 
@@ -75,6 +74,42 @@
 
 
   </main><!-- End #main -->
+
+
+<section>
+ <h1>Créer une demande de prêt</h1>
+
+    @if(session('success'))
+        <div style="color: green;">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div style="color: red;">
+            {{ session('error') }}
+        </div>
+    @endif
+
+    <form action="{{ route('demande-pret') }}" method="post">
+        @csrf
+
+        <label for="projet">Projet :</label>
+        <input type="text" name="projet" required>
+        <br>
+
+        <label for="description">Description :</label>
+        <textarea name="description" required></textarea>
+        <br>
+
+        <label for="montant_voulu">Montant demandé (minimum 25000 CZK) :</label>
+        <input type="number" name="montant_voulue" min="25000" required>
+        <br>
+
+        <button type="submit">Soumettre la demande</button>
+    </form>
+</section>
+
 
   <!-- ======= Footer ======= -->
    <footer id="footer" class="footer">
