@@ -21,6 +21,11 @@ use App\Http\Controllers\LoginController;
 //clients routes
 Route::get('/', [ClientController::class, 'indexpage'])->name('indexpage');
 Route::get('/login', [ClientController::class, 'view_login'])->name('login');
+Route::get('/votre-compte', [ClientController::class, 'view_givemail'])->name('givemail');
+Route::post('/send-code', [LoginController::class, 'sendResetCode'])->name('sendcode');
+Route::post('/update-password', [LoginController::class, 'updatePassword'])->name('updatePassword');
+Route::post('/check-code', [LoginController::class, 'checkResetCode'])->name('checkResetCode'); 
+Route::get('/verify', [LoginController::class, 'verifycode_template'])->name('verifycode');
 Route::get('/register', [ClientController::class, 'view_register'])->name('register');
 Route::post('/register/treat', [ClientController::class, 'create'])->name('registerTreat');
 Route::get('/welcome', [ClientController::class, 'welcome'])->name('welcome');

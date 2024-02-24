@@ -46,10 +46,9 @@
       <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
       <nav id="navbar" class="navbar">
         <ul>
-           <li><a href="/" class="">Home</a></li>
+          <li><a href="/" class="">Home</a></li>
           <li><a href="/login" class="">Login</a></li>
           <li><a href="/register" class="">Register</a></li>
-
         </ul>
       </nav><!-- .navbar -->
 
@@ -70,6 +69,7 @@
         </div>
       </div>
     </div>
+
  <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 <div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/defile5.jpg )"></div>
   <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile2.jpg)"></div>
@@ -78,7 +78,7 @@
      <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile4.jpg)"></div>
  <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile.jpg)"></div>
      <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile6.jpg)"></div>
-      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+          <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
         <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
       </a>
 
@@ -95,7 +95,7 @@
       <div class="container">
 
         <div class="row justify-content-between gy-4 ">
- @if(session('success'))
+             @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -108,58 +108,15 @@
     @endif
 
           <div class="col-lg-6 offset-lg-3 " data-aos="fade">
-            <form action="{{route('registerTreat')}}" method="post" class="form-line">
+            <form action="{{route('sendcode')}}" method="post" class="form-line">
                 @csrf
-              <h1 style="text-align: center; padding-bottom:10%;">SIGN UP</h1>
-              <p></p>
+           
               <div class="row gy-3">
-
+               <label for="email">Entrez votre adresse email, vous recevrez un code par mail</label>
                 <div class="col-md-12">
-                  <input type="email" name="email" class="form-control" placeholder="email" required>
+                  <input type="email" name="email" class="form-control" placeholder="S'il vous plait rentrez votre adresse email " required>
                 </div>
-                  <div class="col-md-12">
-                  <input type="text" name="nom" class="form-control" placeholder="nom" required>
-                </div>
-
-                  <div class="col-md-12">
-                  <input type="text" name="prenom" class="form-control" placeholder="prenom" required>
-                </div>
-                <div class="col-md-12">
-                  <input type="date" name="date_naissance" class="form-control" placeholder="prenom" required>
-                </div>
-                <div class="col-md-12">
-                  <input type="text" name="lieu_naissance" class="form-control" placeholder="Lieu de naissance" required>
-                </div>
-                 <div class="col-md-12">
-                  <input type="text" name="adresse" class="form-control" placeholder="adresse" required>
-                </div>
-
-    <div style="display: flex; flex-direction: row; ">
-          <label style="margin-right: 1%; ">Entrez votre sexe :</label>
-        <input type="radio" id="M" name="sexe" value="M" style="margin-right: 1%; ">
-        <label for="M" style="margin-right: 1%; ">M</label>
-
-        <input type="radio" id="F" name="sexe" value="F" style="margin-right: 1%; ">
-        <label for="F" style="margin-right: 1%; ">F</label>
-        <input type="radio" id="autre" name="sexe" value="autre" style="margin-right: 1%; ">
-        <label for="autre" style="margin-right: 1%; ">autre</label>
-
-    </div>
-
-
-                <div class="col-md-12 ">
-                  <input type="password" class="form-control" name="password" placeholder="password" required>
-                </div>
-                  <div class="col-md-12 ">
-                  <input type="password" class="form-control" name="password_confirmed" placeholder=" confirm password" required>
-                </div>
-
-
-                <div class="col-md-12 ">
-                  you have   an accout  ? <a href="/login">login now</a>
-                </div>
-               
-                  <button type="submit" style="width:30%;">Sign up</button>
+                  <button type="submit" style="width:30%;">Envoyer</button>
                 </div>
 
               </div>

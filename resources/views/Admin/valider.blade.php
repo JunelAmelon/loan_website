@@ -155,7 +155,17 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
+ @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if(session('error'))
+        <div  class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
   <section class="section" style=" border-radius: 20px;  ">
       <div class="row">
         <div class="col-lg-12">
@@ -167,36 +177,37 @@
               <!-- Table with stripped rows -->
              <!-- Ajoutez le code HTML pour afficher la liste des clients et les options de validation/rejet -->
 <table class="table datatable">
-   <thead>
-      <tr>
-         <th scope="col">#</th>
-         <th scope="col">Nom</th>
-         <th scope="col">Prénom</th>
-         <th scope="col">Actions</th>
-      </tr>
-   </thead>
-   <tbody>
-      @foreach($clients as $client)
-      <tr>
-         <th scope="row">{{ $client->id }}</th>
-         <td>{{ $client->nom }}</td>
-         <td>{{ $client->prenom }}</td>
-         <td>
-            <div style="display: flex; flex-direction:row;">
-               <form action="{{ route('approuver', ['id_demande' => $client->id]) }}" method="post">
-                  @csrf
-                  <button type="submit" class="badge bg-success" style="margin-right: 1%;">Valider</button>
-               </form>
-               <form action="{{ route('reject', ['id_demande' => $client->id]) }}" method="post">
-                  @csrf
-                  <button type="submit" class="badge bg-danger">Rejeter</button>
-               </form>
-            </div>
-         </td>
-      </tr>
-      @endforeach
-   </tbody>
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach($clients as $client)
+        <tr>
+            <th scope="row">{{ $client->id }}</th>
+            <td>{{ $client->nom }}</td>
+            <td>{{ $client->prenom }}</td>
+            <td>
+                <div style="display: flex; flex-direction:row;">
+                    <form action="{{ route('approuver', ['id_demande' => $client->demande_id]) }}" method="post">
+                        @csrf
+                        <button type="submit" class="badge bg-success" style="margin-right: 1%;">Valider</button>
+                    </form>
+                    <form action="{{ route('reject', ['id_demande' => $client->demande_id]) }}" method="post">
+                        @csrf
+                        <button type="submit" class="badge bg-danger">Rejeter</button>
+                    </form>
+                </div>
+            </td>
+        </tr>
+        @endforeach
+    </tbody>
 </table>
+
 
               <!-- End Table with stripped rows -->
 

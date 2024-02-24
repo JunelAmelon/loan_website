@@ -274,13 +274,13 @@
                @foreach($demandes as $demande)
                   <tr>
                      <th scope="row"><a href="#">{{ $demande->id }}</a></th>
-                     <td>{{ $demande->client->nom }} {{ $demande->client->prenom }}</td>
+                     <td>  </td>
                      <td class="">{{ $demande->projet }}</td>
                      
                      <td>${{ $demande->montant_voulu }}</td>
                      <td>${{ $demande->montant_voulu - $demande->payement_months }}</td>
                      <td>
-                        <span class="badge bg-{{ $demande->statut == 'Approved' ? 'success' : ($demande->statut == 'Pending' ? 'warning' : 'danger') }}">
+                        <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
                            {{ $demande->statut }}
                         </span>
                      </td>

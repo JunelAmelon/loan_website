@@ -95,7 +95,17 @@
       <div class="container">
 
         <div class="row justify-content-between gy-4 ">
+           @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
 
+    @if(session('error'))
+        <div  class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
           <div class="col-lg-6 offset-lg-3 " data-aos="fade">
             <form action="{{route('signTreat')}}" method="post" class="form-line">
@@ -112,8 +122,9 @@
                   <input type="password" class="form-control" name="password" placeholder="password" required>
                 </div>
 
-
-
+                <div class="col-md-12 ">
+                 <a href="">Mot de passe oublié ?</a>
+                </div>
                   <button type="submit" style="width:30%;">Sign in</button>
                 </div>
 

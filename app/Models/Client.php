@@ -13,4 +13,8 @@ class Client extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function demande()
+{
+    return $this->hasOne(Demande::class, 'client_id', 'id');
+}
 }

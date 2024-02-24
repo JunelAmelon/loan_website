@@ -7,43 +7,50 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
 
 class DemandeController extends Controller
 {
-    //
+        //
     public function create(Request $request)
-    { // Vérification si le client a déjà une demande en attente
+    {   // Vérification si le client a déjà une demande en attente
         $userId = Session::get('id_utilisateur');
-
+        
         $demandeEnAttente = Demande::where('client_id', $userId)->where('statut', 'pending')->first();
-
+        $demandeEligble= Demande::where('client_id', $userId)->where('statut', 'valide')->first();
         if ($demandeEnAttente) {
             return back()->with('error', 'Vous avez déjà une demande en attente. Veuillez patienter avant de soumettre une nouvelle demande.');
+        }
+        if ($demandeEligble) {
+            return back()->with('error', 'Vous n\'etes pas encore eligible pour effectuer une nouvelle demande');
         }
 
         // Validation des données du formulaire
         $request->validate([
             'projet' => 'required|string',
             'description' => 'required|string',
+            'duree' => 'required|numeric|max:25',
             'montant_voulue' => 'required|numeric|min:25000',
         ]);
 
         // Récupération du montant demandé
         $montantDemande = $request->input('montant_voulue');
-
-        // Calcul du montant à payer par mois (4% par mois)
-        $pourcentageMensuel = 0.04 / 12;
-        $montantParMois = $montantDemande * $pourcentageMensuel;
+        $nombreannee=$request->input('duree');
+        $montantParMois= (($montantDemande/$nombreannee) + ($montantDemande/$nombreannee)*0.04)/12*$nombreannee;
+       
+// Désactiver les contraintes de clé étrangère
+DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
         // Création de la demande
         $demande = new Demande([
             'projet' => $request->input('projet'),
             'description' => $request->input('description'),
             'montant_voulu' => $montantDemande,
+            'duree_remboursement'=> $nombreannee,
             'payement_months' => $montantParMois,
             'client_id' => $userId,
         ]);
-
+ 
         // Enregistrement de la demande dans la base de données
         try {
             $demande->save();
@@ -81,14 +88,7 @@ class DemandeController extends Controller
 
     }
 
-    public function approve(Request $request, $loanId)
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
-
-        // Logique pour approuver une demande de prêt
-    }
+     
 
     public function reject()
     {if (!Auth::user()) {

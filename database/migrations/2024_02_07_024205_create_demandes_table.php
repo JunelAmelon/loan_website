@@ -17,6 +17,7 @@ return new class extends Migration
         $table->string('projet');
         $table->text('description');
         $table->decimal('montant_voulu', 10, 2);
+       
         $table->integer('payement_months');
         $table->string('statut');
         $table->integer('credite');

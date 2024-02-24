@@ -72,9 +72,8 @@
 <!-- ======= Services Section ======= -->
 <section id="services" class="services section-bg">
   <div class="container" data-aos="fade-up">
-
     <div class="row gy-4">
-      @foreach($demandes as $demande)
+      @forelse($demandes as $demande)
         <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
           <div class="service-item position-relative">
             <h2 style="border-bottom: 4px solid #ebebed; font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px;">Title: {{ $demande->projet }}</h2>
@@ -87,22 +86,22 @@
               </div>
             @elseif($demande->statut == 'valide')
               <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
-             @elseif($demande->statut == 'rejeter')
-              <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">rejeter</button>
-             @else
-             <div>
-              en cours
-             </div>
-              @endif
+            @elseif($demande->statut == 'rejeter')
+              <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Rejeter</button>
+            @endif
           </div>
         </div><!-- End Service Item -->
-      @endforeach
-
+      @empty
+        <!-- Afficher un message lorsque la liste des demandes est vide -->
+        <div class="col-lg-12 text-center">
+          <div class="service-item position-relative">
+            <p>Aucune demande en cours pour le moment.</p>
+          </div>
+        </div>
+      @endforelse
     </div>
-
   </div>
 </section><!-- End Services Section -->
-
 
 
   </main><!-- End #main -->

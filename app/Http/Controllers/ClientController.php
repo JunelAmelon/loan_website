@@ -33,6 +33,10 @@ class ClientController extends Controller
         return view('Client.login');
 
     }
+     public function view_givemail(){
+        return view('Client.givemail');
+
+    }
     public function view_register()
     {
 
@@ -46,6 +50,7 @@ class ClientController extends Controller
 
         // Validation des données du formulaire
         $request->validate([
+            
             'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
             'nom' => 'required|string',
             'prenom' => 'required|string',
@@ -62,6 +67,7 @@ class ClientController extends Controller
 
             // Création de l'utilisateur associé dans la table users
             $user = new User([
+                
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'client',
@@ -72,6 +78,7 @@ class ClientController extends Controller
 
             // Création d'un nouveau client
             $client = new Client([
+                'id'=>$user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
                 'password' => bcrypt($request->password),

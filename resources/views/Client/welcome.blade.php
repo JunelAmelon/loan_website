@@ -195,6 +195,9 @@
                   <div class="col-md-12 ">
                   <input type="number" class="form-control" name="montant_voulue" min="25000" placeholder="Montant" required>
                 </div>
+                 <div class="col-md-12 ">
+                  <input type="number" class="form-control" name="duree" max="25" placeholder="Durée" required>
+                </div>
                  <div class="col-md-12 text-center">
 
                   <button type="submit">Get a lone</button>
