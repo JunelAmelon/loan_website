@@ -2,24 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Client;
-use App\Models\Remboursement;
 use App\Models\User;
+use App\Models\Client;
 use App\Models\Demande;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
+use App\Models\Remboursement;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\SendContactMessageMail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Session;
+use App\Mail\ContactMessageMarkdownMail;
+
 class ClientController extends Controller
 {
     //
 
     public function indexpage()
-    { 
+    {
         return view('Client.home');
     }
     public function welcome()
-    { if (!Auth::user()) {
+    {
+        if (!Auth::user()) {
             Auth::logout();
             return redirect()->route('indexpage');
         }
@@ -27,13 +32,15 @@ class ClientController extends Controller
         return view('Client.welcome');
     }
 
-   
 
-    public function view_login(){
+
+    public function view_login()
+    {
         return view('Client.login');
 
     }
-     public function view_givemail(){
+    public function view_givemail()
+    {
         return view('Client.givemail');
 
     }
@@ -45,12 +52,12 @@ class ClientController extends Controller
     }
     public function create(Request $request)
     {
-       
+
         // Logique pour créer un compte utilisateur
 
         // Validation des données du formulaire
         $request->validate([
-            
+
             'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
             'nom' => 'required|string',
             'prenom' => 'required|string',
@@ -58,7 +65,7 @@ class ClientController extends Controller
             'lieu_naissance' => 'required|string',
             'adresse' => 'required|string',
             'sexe' => 'required|string',
-            'password' => 'required|min:6', 
+            'password' => 'required|min:6',
             'password_confirmed' => 'required|same:password',
         ]);
 
@@ -67,7 +74,7 @@ class ClientController extends Controller
 
             // Création de l'utilisateur associé dans la table users
             $user = new User([
-                
+
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'client',
@@ -78,7 +85,7 @@ class ClientController extends Controller
 
             // Création d'un nouveau client
             $client = new Client([
-                'id'=>$user->id,
+                'id' => $user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
                 'password' => bcrypt($request->password),
@@ -158,10 +165,11 @@ class ClientController extends Controller
     }
 
     public function rest_to_pay()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         // Récupérer l'ID de l'utilisateur depuis la session (assurez-vous que la session contient l'ID)
         $userId = Session::get('id_utilisateur');
@@ -181,7 +189,7 @@ class ClientController extends Controller
         }
     }
 
-      public function seeDemande()
+    public function seeDemande()
     {
         if (!Auth::user()) {
             Auth::logout();
@@ -197,4 +205,22 @@ class ClientController extends Controller
         return view('Client.mes_demandes', compact('demandes'));
     }
 
+    // Envoie de mail
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'subject' => 'required|min:3',
+            'message' => 'required|min:10',
+        ]);
+
+        $mailable = new ContactMessageMarkdownMail($request->name, $request->email, $request->subject, $request->message);
+        // Envoyer la tâche à la file d'attente
+        SendContactMessageMail::dispatch($mailable);
+        return redirect()
+            ->back()
+            ->with('message', 'Votre message a été envoyé avec succès !');
+
+    }
 }

@@ -1,16 +1,18 @@
 <?php
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Admin;
 use App\Models\Client;
-use App\Models\User;
-use Illuminate\Http\RedirectResponse;
+use Illuminate\View\View;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use App\Mail\CodeResetMarkdownMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Http\RedirectResponse;
+use App\Jobs\SendCodeResetMarkdownMail;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Str;
-use Illuminate\View\View;
 
 class LoginController extends Controller
 {
@@ -52,6 +54,7 @@ class LoginController extends Controller
                 $email_user = $user->email;
                 $client = Client::where('email', $email_user)->first();
                 Session::put('prenom', $client->prenom);
+                Session::put('name', $client->nom);
                 Session::put('email', $email_user);
                 return redirect()->route('welcome')->with('success-connect', 'Connexion réussie en tant que client.');
             } elseif ($user->role === 'admin') {
@@ -91,22 +94,25 @@ class LoginController extends Controller
         ]);
         Session::put('email_password_reset', $request->email);
         $user = User::where('email', Session::get('email_password_reset'))->first();
-       
+
         if (!$user) {
             return back()->with('error', 'Aucun utilisateur trouvé avec cette adresse e-mail.');
         }
 
         // Générer un code aléatoire
         $resetCode = Str::random(6); // ajustez la longueur du code selon vos besoins
-      
+
         // Enregistrez le code dans la base de données
         $user->update([
             'reset_code' => $resetCode,
             'reset_code_expires_at' => now()->addMinutes(15), // expire dans 15 minutes
         ]);
- 
+
         // Envoyer le code par e-mail
         // c'est ici que le code doit etre send par email.
+        $cmailable = new CodeResetMarkdownMail($resetCode, $user->email);
+        // Envoyer la tâche à la file d'attente
+        SendCodeResetMarkdownMail::dispatch($cmailable, $user->email);
 
         return redirect()->route('verifycode')->with('success', 'Un code de réinitialisation a été envoyé à votre adresse e-mail, saisissez le');
     }

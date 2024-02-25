@@ -2,6 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendDemandeInfoMarkdownMail;
+use App\Jobs\SendDemandeReceiptMarkdownMail;
+use App\Mail\DemandeInfoMarkdownMail;
+use App\Mail\DemandeReceiptMarkdownMail;
 use App\Models\Demande;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -11,13 +15,13 @@ use Illuminate\Support\Facades\DB;
 
 class DemandeController extends Controller
 {
-        //
+    //
     public function create(Request $request)
     {   // Vérification si le client a déjà une demande en attente
         $userId = Session::get('id_utilisateur');
-        
+
         $demandeEnAttente = Demande::where('client_id', $userId)->where('statut', 'pending')->first();
-        $demandeEligble= Demande::where('client_id', $userId)->where('statut', 'valide')->first();
+        $demandeEligble = Demande::where('client_id', $userId)->where('statut', 'valide')->first();
         if ($demandeEnAttente) {
             return back()->with('error', 'Vous avez déjà une demande en attente. Veuillez patienter avant de soumettre une nouvelle demande.');
         }
@@ -35,31 +39,42 @@ class DemandeController extends Controller
 
         // Récupération du montant demandé
         $montantDemande = $request->input('montant_voulue');
-        $nombreannee=$request->input('duree');
-        $montantParMois= (($montantDemande/$nombreannee) + ($montantDemande/$nombreannee)*0.04)/12*$nombreannee;
-       
-// Désactiver les contraintes de clé étrangère
-DB::statement('SET FOREIGN_KEY_CHECKS=0');
+        $nombreannee = $request->input('duree');
+        $montantParMois = (($montantDemande / $nombreannee) + ($montantDemande / $nombreannee) * 0.04) / 12 * $nombreannee;
+
+        // Désactiver les contraintes de clé étrangère
+        DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
         // Création de la demande
         $demande = new Demande([
             'projet' => $request->input('projet'),
             'description' => $request->input('description'),
             'montant_voulu' => $montantDemande,
-            'duree_remboursement'=> $nombreannee,
+            'duree_remboursement' => $nombreannee,
             'payement_months' => $montantParMois,
             'client_id' => $userId,
         ]);
- 
+
         // Enregistrement de la demande dans la base de données
         try {
             $demande->save();
-
+            $email = Session::get('email_utilisateur');
+            $prenom = Session::get('prenom');
+            $nom = Session::get('name');
+            $dmailable = new DemandeReceiptMarkdownMail($email);
+            $nmailable = new DemandeInfoMarkdownMail($prenom, $nom);
+            // Envoyer la tâche à la file d'attente
+            SendDemandeInfoMarkdownMail::dispatch($nmailable);
+            SendDemandeReceiptMarkdownMail::dispatch($dmailable, $email);
             return redirect()->route('welcome')->with('success', 'Demande de prêt enregistrée avec succès.');
+
         } catch (\Exception $e) {
             // Erreur d'enregistrement
             return back()->with('error', 'Erreur lors de l\'enregistrement de la demande de prêt.');
         }
+
+
+
     }
 
     public function seeDemande()
@@ -88,13 +103,14 @@ DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
     }
 
-     
+
 
     public function reject()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         $userId = Session::get('id_utilisateur');
         $demande = Demande::where('client_id', $userId)->first();
@@ -108,10 +124,11 @@ DB::statement('SET FOREIGN_KEY_CHECKS=0');
     }
 
     public function crediteAccount()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         $userId = Session::get('id_utilisateur');
 
