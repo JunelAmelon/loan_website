@@ -1,8 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
 use App\Models\Client;
+ 
+use App\Jobs\SendDemandeInfoMarkdownMail;
+use App\Jobs\SendDemandeReceiptMarkdownMail;
+use App\Mail\DemandeInfoMarkdownMail;
+use App\Mail\DemandeReceiptMarkdownMail;
+ 
 use App\Models\Demande;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -37,6 +43,7 @@ class DemandeController extends Controller
 
 // Récupération du montant demandé
         $montantDemande = $request->input('montant_voulue');
+ 
         $dureeAnnees = $request->input('duree');
 
         // Conversion du taux d'intérêt annuel en taux d'intérêt mensuel
@@ -50,6 +57,7 @@ class DemandeController extends Controller
         $montantMensuel = ($montantDemande * $tauxInteretMensuel) / (1 - pow(1 + $tauxInteretMensuel, -$nombrePaiements));
 
 // Désactiver les contraintes de clé étrangère
+ 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
 
         // Création de la demande
@@ -65,19 +73,32 @@ class DemandeController extends Controller
             'montant_restant' => 0, // Initialiser à 0
         ]);
 
+ 
         Client::where('user_id', $userId)->update([
             'rib' => $request->input('rib'),
         ]);
 
+ 
         // Enregistrement de la demande dans la base de données
         try {
             $demande->save();
-
+            $email = Session::get('email_utilisateur');
+            $prenom = Session::get('prenom');
+            $nom = Session::get('name');
+            $dmailable = new DemandeReceiptMarkdownMail($email);
+            $nmailable = new DemandeInfoMarkdownMail($prenom, $nom);
+            // Envoyer la tâche à la file d'attente
+            SendDemandeInfoMarkdownMail::dispatch($nmailable);
+            SendDemandeReceiptMarkdownMail::dispatch($dmailable, $email);
             return redirect()->route('welcome')->with('success', 'Demande de prêt enregistrée avec succès.');
+
         } catch (\Exception $e) {
             // Erreur d'enregistrement
             return back()->with('error', 'Erreur lors de l\'enregistrement de la demande de prêt.');
         }
+
+
+
     }
 
     public function seeDemande()
@@ -106,11 +127,13 @@ class DemandeController extends Controller
 
     }
 
+ 
     public function reject()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         $userId = Session::get('id_utilisateur');
         $demande = Demande::where('client_id', $userId)->first();
@@ -125,10 +148,11 @@ class DemandeController extends Controller
     }
 
     public function crediteAccount()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         $userId = Session::get('id_utilisateur');
 

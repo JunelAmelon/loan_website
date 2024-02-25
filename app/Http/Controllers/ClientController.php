@@ -1,14 +1,19 @@
 <?php
 
 namespace App\Http\Controllers;
-
+ 
+use App\Models\User;
 use App\Models\Client;
 use App\Models\Demande;
-use App\Models\Remboursement;
-use App\Models\User;
 use Illuminate\Http\Request;
+use App\Models\Remboursement;
+use Illuminate\Support\Facades\DB;
+use App\Jobs\SendContactMessageMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
+use App\Mail\ContactMessageMarkdownMail;
+ 
 
 class ClientController extends Controller
 {
@@ -19,14 +24,17 @@ class ClientController extends Controller
         return view('Client.home');
     }
     public function welcome()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+ 
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
+ 
 
         return view('Client.welcome');
     }
-
+ 
     public function view_login()
     {
         return view('Client.login');
@@ -157,10 +165,11 @@ class ClientController extends Controller
     }
 
     public function rest_to_pay()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('indexpage');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('indexpage');
+        }
 
         // Récupérer l'ID de l'utilisateur depuis la session (assurez-vous que la session contient l'ID)
         $userId = Session::get('id_utilisateur');
@@ -196,4 +205,22 @@ class ClientController extends Controller
         return view('Client.mes_demandes', compact('demandes'));
     }
 
+    // Envoie de mail
+    public function store(Request $request)
+    {
+        $this->validate($request, [
+            'name' => 'required|min:5',
+            'email' => 'required|email',
+            'subject' => 'required|min:3',
+            'message' => 'required|min:10',
+        ]);
+
+        $mailable = new ContactMessageMarkdownMail($request->name, $request->email, $request->subject, $request->message);
+        // Envoyer la tâche à la file d'attente
+        SendContactMessageMail::dispatch($mailable);
+        return redirect()
+            ->back()
+            ->with('message', 'Votre message a été envoyé avec succès !');
+
+    }
 }
