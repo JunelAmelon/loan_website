@@ -123,7 +123,7 @@
                 </div>
 
                 <div class="col-md-12 ">
-                 <a href="">Mot de passe oublié ?</a>
+                 <a href="{{route('givemail')}}">Mot de passe oublié ?</a> 
                 </div>
                   <button type="submit" style="width:30%;">Sign in</button>
                 </div>

@@ -8,7 +8,7 @@
   <title>Votre espace d'administration</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
- 
+
   <!-- Google Fonts -->
   <link href="https://fonts.gstatic.com" rel="preconnect">
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Nunito:300,300i,400,400i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -64,13 +64,16 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets-admin/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">K. Anderson</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">  @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-             <h6>Kevin Anderson</h6>
-              <span>Web Designer</span>
+             <h6>
+              @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif
+
+             </h6> 
+               
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -88,22 +91,22 @@
 
             <li>
               <a class="dropdown-item d-flex align-items-center" href="/profile">
-                <i class="bi bi-gear"></i>
+                 <i class="bi bi-gear"></i>
                 <span>Account Settings</span>
               </a>
             </li>
             <li>
               <hr class="dropdown-divider">
             </li>
- 
+
             <li>
               <hr class="dropdown-divider">
             </li>
 
             <li>
-              <a class="dropdown-item d-flex align-items-center" href="#">
+              <a class="dropdown-item d-flex align-items-center" href="{{ route('deconnexion/admin') }}" style="color: black;">
                 <i class="bi bi-box-arrow-right"></i>
-                <span>Sign Out</span>
+                <span >Deconnecter</span>
               </a>
             </li>
 
@@ -134,17 +137,22 @@
         </a>
       </li><!-- End Register Page Nav -->
 
-     
 
+      <li class="nav-item">
+        <a class="nav-link collapsed" href="/update-loane">
+         <i class="bi bi-pencil-square"></i>
+          <span>Mettre à jour dette</span>
+        </a>
+      </li>
 
        <li class="nav-item">
         <a class="nav-link collapsed" href="/profile">
-          <i class="bi bi-person-fill"></i>
+         <i class="bi bi-person-fill"></i>
           <span>Profile</span>
         </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link collapsed" href="/">
+        <a class="nav-link collapsed"  href="{{ route('deconnexion/admin') }}" style="color: black;">
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Deconnecter</span>
         </a>
@@ -180,7 +188,7 @@
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card sales-card">
 
-               
+
 
                 <div class="card-body">
                   <h5 class="card-title">Nombres de demande <span>| Clients</span></h5>
@@ -190,7 +198,7 @@
                       <i class="bi bi-journal-bookmark-fill"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>145</h6>
+                      <h6>{{ $demandeCount }}</h6>
                       <span class="text-success small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -203,7 +211,7 @@
             <!-- Revenue Card -->
             <div class="col-xxl-4 col-md-6">
               <div class="card info-card revenue-card">
- 
+
 
                 <div class="card-body">
                   <h5 class="card-title">Montant de la demande <span>| Total</span></h5>
@@ -213,7 +221,7 @@
                       <i class="bi bi-currency-dollar"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>$3,264</h6>
+                      <h6>$ {{ $montantTotal }}</h6>
                       <span class="text-success small pt-1 fw-bold">8%</span> <span class="text-muted small pt-2 ps-1">increase</span>
 
                     </div>
@@ -228,7 +236,7 @@
 
               <div class="card info-card customers-card">
 
-               
+
 
                 <div class="card-body">
                   <h5 class="card-title">Demande approuvé <span>| Total</span></h5>
@@ -238,7 +246,7 @@
                       <i class="bi bi-building-check"></i>
                     </div>
                     <div class="ps-3">
-                      <h6>1244</h6>
+                      <h6> {{ $demandeApprouveCount }}</h6>
                       <span class="text-danger small pt-1 fw-bold">12%</span> <span class="text-muted small pt-2 ps-1">decrease</span>
 
                     </div>
@@ -249,7 +257,7 @@
 
             </div><!-- End Customers Card -->
 
-         
+
 
            <!-- Recent Sales -->
 <div class="col-12">
@@ -264,6 +272,7 @@
                   <th scope="col">#</th>
                   <th scope="col">Client</th>
                   <th scope="col">projet</th>
+                  <th scope="col">rib</th>
                   <th scope="col">montant</th>
                   <th scope="col">reste</th>
                   <th scope="col">statut</th>
@@ -271,22 +280,24 @@
                </tr>
             </thead>
             <tbody>
-               @foreach($demandes as $demande)
-                  <tr>
-                     <th scope="row"><a href="#">{{ $demande->id }}</a></th>
-                     <td>  </td>
-                     <td class="">{{ $demande->projet }}</td>
-                     
-                     <td>${{ $demande->montant_voulu }}</td>
-                     <td>${{ $demande->montant_voulu - $demande->payement_months }}</td>
-                     <td>
-                        <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
-                           {{ $demande->statut }}
-                        </span>
-                     </td>
-                       <td class="scrolling-text">{{ $demande->description }}</td>
-                  </tr>
-               @endforeach
+              @foreach($demandes as $demande)
+    <tr>
+        <th scope="row"><a href="#">{{ $demande->id }}</a></th>
+        <td>{{ $demande->client->nom }} {{ $demande->client->prenom }}</td>
+        <td class="">{{ $demande->projet }}</td>
+         <td>{{ $demande->client->rib }}</td>
+        <td>${{ $demande->montant_voulu }}</td>
+        <td>${{ $demande->montant_voulu - $demande->montant_take }}</td>
+        <td>
+            <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
+                {{ $demande->statut }}
+            </span>
+        </td>
+        <td class="scrolling-text">{{ $demande->description }}</td>
+       
+    </tr>
+@endforeach
+
             </tbody>
          </table>
 
@@ -297,12 +308,12 @@
   <style>
     /* Style pour la div contenant le texte avec défilement */
     .scrolling-text {
-    
+
       overflow: auto; /* Activation du défilement lorsque le contenu dépasse la hauteur définie */
-       
+
     }
   </style>
-            
+
 
           </div>
         </div><!-- End Left side columns -->
@@ -383,6 +394,7 @@
     </div>
 
   </footer><!-- End Footer -->
+  
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

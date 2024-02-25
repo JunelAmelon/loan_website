@@ -108,11 +108,11 @@
     @endif
 
           <div class="col-lg-6 offset-lg-3 " data-aos="fade">
-            <form action="{{route('updatePassword')}}" method="post" class="form-line">
+            <form action="{{route('updateMyPassword')}}" method="post" class="form-line">
                 @csrf
                
               <div class="row gy-3">
-<label for="">Entrez votre nouveau mot de passe</label>
+              <label for="">Entrez votre nouveau mot de passe</label>
                 <div class="col-md-12">
                   <input type="password" name="password" class="form-control" placeholder="Entrez votre nouveau mot de passe" required>
                 </div>

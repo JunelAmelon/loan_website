@@ -21,8 +21,14 @@ class LoginController extends Controller
         return view('Client.login');
     }
 
-    public function verifycode_template():View{
+    public function verifycode_template(): View
+    {
         return view('Client.verifycode');
+
+    }
+    public function updatePasswordPage(): View
+    {
+        return view('Client.resetpassword_page');
 
     }
     public function authenticate(Request $request): RedirectResponse | View
@@ -58,7 +64,7 @@ class LoginController extends Controller
                 $user = Auth::user();
                 $email_admin = $user->email;
                 $admin = Admin::where('id', $id)->first();
-                Session::put('prenom', $admin->prenom);
+                Session::put('prenom-admin', $admin->prenom);
                 Session::put('email-admin', $email_admin);
                 // Redirection vers la page d'accueil de l'administrateur
                 return redirect()->route('welcome-admin')->with('success-connect', 'Connexion réussie en tant qu\'administrateur.');
@@ -84,6 +90,14 @@ class LoginController extends Controller
         return redirect()->route('indexpage');
     }
 
+    public function deconnexion_admin()
+    {
+        if (Auth::user()) {
+            Auth::logout();
+        }
+        return redirect()->route('admin/login');
+    }
+
     public function sendResetCode(Request $request)
     {
         $request->validate([
@@ -91,20 +105,20 @@ class LoginController extends Controller
         ]);
         Session::put('email_password_reset', $request->email);
         $user = User::where('email', Session::get('email_password_reset'))->first();
-       
+
         if (!$user) {
             return back()->with('error', 'Aucun utilisateur trouvé avec cette adresse e-mail.');
         }
 
         // Générer un code aléatoire
         $resetCode = Str::random(6); // ajustez la longueur du code selon vos besoins
-      
+
         // Enregistrez le code dans la base de données
         $user->update([
             'reset_code' => $resetCode,
             'reset_code_expires_at' => now()->addMinutes(15), // expire dans 15 minutes
         ]);
- 
+
         // Envoyer le code par e-mail
         // c'est ici que le code doit etre send par email.
 
@@ -134,20 +148,21 @@ class LoginController extends Controller
         }
 
         // Si tout est en ordre, redirigez l'utilisateur vers la page de réinitialisation du mot de passe
-        return view('Client.resetpassword_page');
+        return redirect()->route('updatePasswordPage');
+
     }
 
     public function updatePassword(Request $request)
     {
         $request->validate([
-            'password' => 'required|confirmed|min:8',
+            'password' => 'required',
         ]);
 
         // Récupérez l'utilisateur par l'adresse e-mail
         $user = User::where('email', Session::get('email_password_reset'))->first();
 
         // Vérifiez si le code de réinitialisation est valide et n'a pas expiré
-        if ($user && $user->reset_code === $request->input('reset_code') && now()->lt($user->reset_code_expires_at)) {
+        if ($user && now()->lt($user->reset_code_expires_at)) {
             // Mettez à jour le mot de passe
             $user->update([
                 'password' => bcrypt($request->input('password')),
@@ -156,10 +171,12 @@ class LoginController extends Controller
             ]);
 
             // Redirigez l'utilisateur vers la page de connexion avec un message de succès
-            return redirect('/login')->with('success', 'Votre mot de passe a été mis à jour avec succès. Connectez-vous avec votre nouveau mot de passe.');
+            return redirect('login')->with('success', 'Votre mot de passe a été mis à jour avec succès. Connectez-vous avec votre nouveau mot de passe.');
+        } else {
+// Si le code de réinitialisation est invalide ou expiré, redirigez l'utilisateur avec un message d'erreur
+            return redirect('updatePasswordPage')->with('error', 'Le code de réinitialisation est invalide ou a expiré. Veuillez réessayer.');
+
         }
 
-        // Si le code de réinitialisation est invalide ou expiré, redirigez l'utilisateur avec un message d'erreur
-        return redirect('/login')->with('error', 'Le code de réinitialisation est invalide ou a expiré. Veuillez réessayer.');
     }
 }

@@ -3,37 +3,37 @@
 namespace App\Http\Controllers;
 
 use App\Models\Client;
+use App\Models\Demande;
 use App\Models\Remboursement;
 use App\Models\User;
-use App\Models\Demande;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\DB;
+
 class ClientController extends Controller
 {
     //
 
     public function indexpage()
-    { 
+    {
         return view('Client.home');
     }
     public function welcome()
-    { if (!Auth::user()) {
-            Auth::logout();
-            return redirect()->route('indexpage');
-        }
+    {if (!Auth::user()) {
+        Auth::logout();
+        return redirect()->route('indexpage');
+    }
 
         return view('Client.welcome');
     }
 
-   
-
-    public function view_login(){
+    public function view_login()
+    {
         return view('Client.login');
 
     }
-     public function view_givemail(){
+    public function view_givemail()
+    {
         return view('Client.givemail');
 
     }
@@ -45,12 +45,12 @@ class ClientController extends Controller
     }
     public function create(Request $request)
     {
-       
+
         // Logique pour créer un compte utilisateur
 
         // Validation des données du formulaire
         $request->validate([
-            
+
             'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
             'nom' => 'required|string',
             'prenom' => 'required|string',
@@ -58,7 +58,7 @@ class ClientController extends Controller
             'lieu_naissance' => 'required|string',
             'adresse' => 'required|string',
             'sexe' => 'required|string',
-            'password' => 'required|min:6', 
+            'password' => 'required|min:6',
             'password_confirmed' => 'required|same:password',
         ]);
 
@@ -67,18 +67,17 @@ class ClientController extends Controller
 
             // Création de l'utilisateur associé dans la table users
             $user = new User([
-                
+
                 'email' => $request->email,
                 'password' => bcrypt($request->password),
                 'role' => 'client',
             ]);
 
-
             $user->save();
 
             // Création d'un nouveau client
             $client = new Client([
-                'id'=>$user->id,
+                'id' => $user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
                 'password' => bcrypt($request->password),
@@ -181,7 +180,7 @@ class ClientController extends Controller
         }
     }
 
-      public function seeDemande()
+    public function seeDemande()
     {
         if (!Auth::user()) {
             Auth::logout();

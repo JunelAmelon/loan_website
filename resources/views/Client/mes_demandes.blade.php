@@ -47,7 +47,6 @@
         <ul>
           <li><a href="/welcome" class="active">Home</a></li>
            <li><a  href="/mes-demandes">demandes</a></li>
-          <li><a   href="#contact">Contact</a></li>
            <li><a   href="{{ route('deconnexion') }}">log out</a></li>
         </ul>
       </nav><!-- .navbar -->
@@ -70,7 +69,18 @@
       </div>
     </div><!-- End Breadcrumbs -->
 <!-- ======= Services Section ======= -->
-<section id="services" class="services section-bg">
+<section id="services" class="services section-bg" >
+      @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
+    @if(session('error'))
+        <div  class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
   <div class="container" data-aos="fade-up">
     <div class="row gy-4">
       @forelse($demandes as $demande)
@@ -81,13 +91,18 @@
 
             @if($demande->statut == 'pending')
               <div style="display:flex; flex-direction: row;">
-                <button class="btn readmore stretched-link" style="color:white; background-color:darkblue;  border: 1px solid darkblue; margin-right: 2%;">Pending</button>
-                <button class="btn readmore stretched-link" style="color:white; background-color:crimson; border: 1px solid crimson; ">Delete</button>
-              </div>
+                <button class="btn readmore " style="color:white; background-color:darkblue;  border: 1px solid darkblue; margin-right: 2%;">Pending</button>
+                  <form action="{{ route('reject_client_demande', ['id_demande' => $demande->id]) }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn bg-danger btn readmore" style="color: white;" >Rejeter</button>
+                  </form>
+                  </div>
             @elseif($demande->statut == 'valide')
               <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Validate</button>
-            @elseif($demande->statut == 'rejeter')
-              <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Rejeter</button>
+              <button class="btn readmore stretched-link" style="color:white; background-color:darkblue; border: 1px solid forestgreen;">Reste: {{ $demande->montant_restant }} CZK</button>
+
+              @elseif($demande->statut == 'rejeter')
+             <button type="" class="btn bg-danger stretched-link" style="color: white;" >Rejeter</button>
             @endif
           </div>
         </div><!-- End Service Item -->

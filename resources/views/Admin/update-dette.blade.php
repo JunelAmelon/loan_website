@@ -61,12 +61,12 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets-admin/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">@if (Session::has('prenom')){{ Session::get('prenom') }} @endif</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;"> @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif</span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
-             <h6> @if (Session::has('prenom')){{ Session::get('prenom') }} @endif</h6>
+             <h6>  @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif</h6>
            
             </li>
             <li>
@@ -177,7 +177,7 @@
 
           <div class="card" >
             <div class="card-body">
-              <h5 class="card-title">Liste des demandes en attentes</h5>
+              <h5 class="card-title">Liste des clients</h5>
 
               <!-- Table with stripped rows -->
              <!-- Ajoutez le code HTML pour afficher la liste des clients et les options de validation/rejet -->
@@ -187,7 +187,7 @@
             <th scope="col">#</th>
             <th scope="col">Nom</th>
             <th scope="col">Prénom</th>
-            <th scope="col">Actions</th>
+            <th scope="col">Mettre à jour</th>
         </tr>
     </thead>
     <tbody>
@@ -198,13 +198,11 @@
             <td>{{ $client->prenom }}</td>
             <td>
                 <div style="display: flex; flex-direction:row;">
-                    <form action="{{ route('approuver', ['id_demande' => $client->demande_id]) }}" method="post">
+                    
+                    <form action="{{ route('update_montant', ['id_demande' => $client->demande_id])}}" method="post">
                         @csrf
-                        <button type="submit" class="badge bg-success" style="margin-right: 1%;">Valider</button>
-                    </form>
-                    <form action="{{ route('reject', ['id_demande' => $client->demande_id]) }}" method="post">
-                        @csrf
-                        <button type="submit" class="badge bg-danger">Rejeter</button>
+                        <input type="number" name="montant_take" id="" placeholder="Entrez le montant recu">
+                        <button type="submit" class="badge bg-primary">mettre à jour</button>
                     </form>
                 </div>
             </td>

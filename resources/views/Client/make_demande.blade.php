@@ -105,6 +105,9 @@
         <label for="montant_voulu">Montant demandé (minimum 25000 CZK) :</label>
         <input type="number" name="montant_voulue" min="25000" required>
         <br>
+        <label for="rib">RIB :</label>
+        <input type="text" name="rib" required>
+        <br>
 
         <button type="submit">Soumettre la demande</button>
     </form>
