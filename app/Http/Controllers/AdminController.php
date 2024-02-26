@@ -34,37 +34,47 @@ class AdminController extends Controller
     {
         $montantTotal = Demande::sum('montant_voulu');
         return $montantTotal;
-    }public function update_montant(Request $request, $id_demande)
-    {
-        // Validation des données du formulaire
-        $request->validate([
-            'montant_take' => 'required|numeric',
-        ]);
+    }
+    public function update_montant(Request $request, $id_demande)
+{
+    // Validation des données du formulaire
+    $request->validate([
+        'montant_take' => 'required|numeric',
+    ]);
 
-        try {
-            $ancienMontant = Demande::where('id', $id_demande)->value('montant_take');
-            $montant_voulue= Demande::where('id', $id_demande)->value('montant_voulu');
+    try {
+        // Récupérer la demande associée à l'id_demande
+        $demande = Demande::findOrFail($id_demande);
 
-             Demande::where('id', $id_demande)->update([
-                'montant_take' => $ancienMontant + $request->input('montant_take'),
-
-            ]);
-            $montant_take_new = Demande::where('id', $id_demande)->value('montant_take');
-
-
-            $montant_restant = $montant_voulue - $montant_take_new;
-           
-            Demande::where('id', $id_demande)->update([
-                'montant_restant' => $montant_restant,
-
-            ]);
-
-            return redirect()->back()->with('success', 'Montant mis à jour avec succès.');
-        } catch (\Exception $e) {
-            return redirect()->back()->with('error', 'Erreur lors de la mise à jour du montant.');
+        // Vérifier si le montant_restant est déjà à 0, alors ne pas effectuer la mise à jour
+        if ($demande->montant_restant == 0) {
+            return redirect()->back()->with('error', 'Le montant restant est déjà à 0 pour ce client.');
         }
 
+        // Vérifier si le montant à mettre à jour est supérieur au montant restant
+        if ($request->input('montant_take') > $demande->montant_restant) {
+            return redirect()->back()->with('error', 'Le montant que vous souhaitez insérer est supérieur au montant restant à payer.');
+        }
+
+        // Mettre à jour le montant_take et le montant_restant
+        $ancienMontant = $demande->montant_take;
+        $montantVoulu = $demande->montant_voulu;
+
+        $nouveauMontantTake = $ancienMontant + $request->input('montant_take');
+        $nouveauMontantRestant = $montantVoulu - $nouveauMontantTake;
+
+        // Mettre à jour la demande
+        $demande->update([
+            'montant_take' => $nouveauMontantTake,
+            'montant_restant' => $nouveauMontantRestant,
+        ]);
+
+        return redirect()->back()->with('success', 'Montant mis à jour avec succès.');
+    } catch (\Exception $e) {
+        return redirect()->back()->with('error', 'Erreur lors de la mise à jour du montant.');
     }
+}
+
 
     public function getDemandeApprouveCount()
     {

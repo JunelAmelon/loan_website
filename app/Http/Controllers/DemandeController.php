@@ -70,7 +70,7 @@ class DemandeController extends Controller
             'client_id' => $userId,
             'montant_take' => 0, // Initialiser à 0
             'montant_payer' => 0, // Initialiser à 0
-            'montant_restant' => 0, // Initialiser à 0
+            'montant_restant' => $montantMensuel*12*$dureeAnnees, // Initialiser à 0
         ]);
 
  

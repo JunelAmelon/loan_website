@@ -191,23 +191,25 @@
         </tr>
     </thead>
     <tbody>
-        @foreach($clients as $client)
+       @foreach($clients as $client)
+    
         <tr>
             <th scope="row">{{ $client->id }}</th>
             <td>{{ $client->nom }}</td>
             <td>{{ $client->prenom }}</td>
             <td>
-                <div style="display: flex; flex-direction:row;">
-                    
-                    <form action="{{ route('update_montant', ['id_demande' => $client->demande_id])}}" method="post">
-                        @csrf
-                        <input type="number" name="montant_take" id="" placeholder="Entrez le montant recu">
-                        <button type="submit" class="badge bg-primary">mettre à jour</button>
-                    </form>
-                </div>
+                <form action="{{ route('update_montant', ['id_demande' => $client->demande_id]) }}" method="post">
+                    @csrf
+                    <div class="input-group">
+                        <input type="number" class="form-control" name="montant_take" placeholder="Entrez le montant recu" required>
+                        <button type="submit" class="btn btn-primary">Mettre à jour</button>
+                    </div>
+                </form>
             </td>
         </tr>
-        @endforeach
+   
+@endforeach
+
     </tbody>
 </table>
 

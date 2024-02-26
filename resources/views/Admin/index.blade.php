@@ -287,7 +287,7 @@
         <td class="">{{ $demande->projet }}</td>
          <td>{{ $demande->client->rib }}</td>
         <td>${{ $demande->montant_voulu }}</td>
-        <td>${{ $demande->montant_voulu - $demande->montant_take }}</td>
+        <td>${{ $demande->montant_restant <0 ? 0 :$demande->montant_restant }}</td>
         <td>
             <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
                 {{ $demande->statut }}
