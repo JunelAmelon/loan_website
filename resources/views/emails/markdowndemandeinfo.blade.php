@@ -1,9 +1,9 @@
 <x-mail::message>
-# Nouvelle Demande
+# Nová žádost
 
-Vous avez reçu une nouvelle demande de: ``{{$nom}} {{ $prenom }}``.<br>
-Veuillez l'étudier et apporter votre décision.
+Obdrželi jste novou žádost od: ``{{$nom}} {{ $prenom }}``.<br>
+Prosím, zvažte ji a učiňte své rozhodnutí.
 
-Thanks,<br>
+Děkuji,<br>
 {{ config('app.name') }}
 </x-mail::message>

@@ -24,7 +24,7 @@ class DemandeReceiptMarkdownMail extends Mailable
     public function build()
     {
         return $this->from("pret@Noreply.com")
-                    ->subject("Demande reçu")
+                    ->subject("Žádost přijata")
                     ->markdown('emails.markdowndemandereceipt');
     }
 }

@@ -1,9 +1,9 @@
 <x-mail::message>
-# Demande Reçu
+# Přijatá žádost
 
-Nous avons bien reçu votre demande de prêt, nous l'étudierons.<br>
-Veuillez consulter régulièrement votre espace utilisateur pour être informer des avancées de votre demande.
+Děkujeme za vaši žádost o půjčku. Budeme ji prozkoumávat. <br>
+Pravidelně sledujte svůj uživatelský prostor pro informace o pokroku vaší žádosti.
 
-Thanks,<br>
+Děkuji,<br>
 {{ config('app.name') }}
 </x-mail::message>

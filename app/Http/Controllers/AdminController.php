@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendValideMarkdownMail;
+use App\Mail\ValideMarkdownMail;
 use App\Models\Admin;
 use App\Models\Demande;
 use App\Models\User;
@@ -35,7 +37,7 @@ class AdminController extends Controller
         $montantTotal = Demande::sum('montant_voulu');
         return $montantTotal;
     }
-    public function update_montant(Request $request, $id_demande)
+   public function update_montant(Request $request, $id_demande)
 {
     // Validation des données du formulaire
     $request->validate([
@@ -186,7 +188,16 @@ class AdminController extends Controller
 
         // Mettre à jour le champ 'statut' avec la valeur 'valide'
         $loan->update(['statut' => 'valide']);
+        $montantMensuel = Session::get('montantmensuel');
+        $dureeAnnees = Session::get('dureeAnnees');
+        $montant_restant = Session::get('montant_restant');
+        $montantDemande = Session::get('montantDemande');
+        $email = Session::get('email_utilisateur');
+        $prenom = Session::get('prenom');
+        $nom = Session::get('name');
 
+        $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montant_restant, $montantDemande, $email, $prenom, $nom);
+        SendValideMarkdownMail::dispatch($vmailable, $email);
         // Rediriger avec un message de succès
         return redirect()->route('valider')->with('success', 'La demande a été validée.');
     }

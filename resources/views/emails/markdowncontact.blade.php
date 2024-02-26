@@ -1,11 +1,11 @@
 <x-mail::message>
-# Nouveau message de contact de: {{ $name }}
+# Nová zpráva od kontaktu od: {{ $name }}
 
 **Email** :``{{ $email }}`` <br>
-**Sujet** :``{{ $subject }}`` <br>
-**Message** : <br> {{ $msg }}
+**Sběrka** :``{{ $subject }}`` <br>
+**Zpráva** : <br> {{ $msg }}
 
 
-Thanks,<br>
+Děkuji,<br>
 {{ config('app.name') }}
 </x-mail::message>
