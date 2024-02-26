@@ -100,10 +100,10 @@ class ClientController extends Controller
             $client->save();
 
             // Redirection avec un message de succès
-            return redirect()->route('login')->with('success', 'Compte créé avec succès.');
+            return redirect()->route('login')->with('success', 'Účet byl úspěšně vytvořen.');
         } else {
             // Redirection avec un message d'erreur en cas d'échec
-            return redirect()->route('register')->with('error', 'Les mots de passe ne sont pas équivalents.');
+            return redirect()->route('register')->with('error', 'Hesla se neshodují.');
         }
     }
 
@@ -161,7 +161,7 @@ class ClientController extends Controller
         }
 
         // Redirection avec un message de succès
-        return redirect()->route('my_route_name')->with('success', 'Profil mis à jour avec succès.');
+        return redirect()->route('my_route_name')->with('success', 'Profil úspěšně aktualizován.');
     }
 
     public function rest_to_pay()
@@ -220,7 +220,7 @@ class ClientController extends Controller
         SendContactMessageMail::dispatch($mailable);
         return redirect()
             ->back()
-            ->with('message', 'Votre message a été envoyé avec succès !');
+            ->with('message', 'Vaše zpráva byla úspěšně odeslána!');
 
     }
 }

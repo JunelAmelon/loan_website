@@ -47,12 +47,13 @@
             <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
             <nav id="navbar" class="navbar">
                 <ul>
-                    <li><a href="/index" class="active">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="/mes-demandes">demandes</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                    <li><a href="{{ route('deconnexion') }}">log out</a></li>
+                    <li><a href="/index" class="active">Domů</a></li>
+                    <li><a href="#about">O nás</a></li>
+                    <li><a href="#services">Služby</a></li>
+                    <li><a href="/mes-demandes">Poptávky</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
+
+                    <li><a href="{{ route('deconnexion') }}">Odhlásit se</a></li>
                 </ul>
             </nav><!-- .navbar -->
 
@@ -66,10 +67,16 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-6 text-center">
-                        <h2 data-aos="fade-down">Welcome to <span>SociáIní Půjčka a.s</span></h2>
-                        <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                        <h2 data-aos="fade-down">Vítejte na <span>SociáIní Půjčka a.s</span></h2>
+                        <p data-aos="fade-up">
+                            U společnosti SociáIní Půjčka a.s. chápeme, že každý jedinec může mít různé finanční potřeby
+                            v různých obdobích života. Proto se zavazujeme poskytovat jednoduchá, rychlá a bezpečná
+                            půjčovací řešení, abychom vám pomohli čelit vašim finančním výzvám.
+
+                            Ať už potřebujete neočekávanou finanční injekci, konsolidovat své dluhy, nebo uskutečnit
+                            osobní či profesionální projekt, jsme tu pro vás, abychom vám pomohli najít nejlepší řešení
+                            úvěru přizpůsobené vašim jedinečným potřebám. </p>
+
                         <a data-aos="fade-up" data-aos-delay="200" href="#" class="btn-get-started">
                             @if(Session::has('prenom'))
                             {{ Session::get('prenom') }}
@@ -114,43 +121,44 @@
                     data-aos-delay="100"></div>
 
                 <div class="col-lg-5 d-flex flex-column justify-content-center">
-                    <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-                    <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima
-                        temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi</p>
+                    <h3>O nás</h3>
+                    <p>Naše společnost, SociáIní Půjčka a.s, poskytuje personalizovaná, transparentní a rychlá finanční
+                        řešení. S oddaným zákaznickým servisem zjednodušujeme proces žádání o půjčku a zajišťujeme
+                        příjemný zážitek našim klientům.</p>
 
                     <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
                         <i class="bi bi-easel flex-shrink-0"></i>
                         <div>
-                            <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                            <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint
-                                occaecati cupiditate non provident</p>
+                            <h4><a href="" class="stretched-link">Personalizovaný přístup</a></h4>
+                            <p>V SociáIní Půjčka a.s nabízíme řešení přizpůsobená každému klientovi, která bere v úvahu
+                                jejich jedinečné potřeby.</p>
                         </div>
                     </div><!-- End Icon Box -->
 
                     <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
                         <i class="bi bi-patch-check flex-shrink-0"></i>
                         <div>
-                            <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
-                                voluptatum deleniti atque</p>
+                            <h4><a href="" class="stretched-link">Transparentnost a spravedlnost</a></h4>
+                            <p>Zajišťujeme úplnou transparentnost a férové podmínky půjčky pro důvěryhodné finanční
+                                rozhodnutí.</p>
                         </div>
                     </div><!-- End Icon Box -->
 
                     <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
                         <i class="bi bi-brightness-high flex-shrink-0"></i>
                         <div>
-                            <h4><a href="" class="stretched-link">Dine Pad</a></h4>
-                            <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut
-                                deserunt minus aut eligendi omnis</p>
+                            <h4><a href="" class="stretched-link">Rychlost a efektivita</a></h4>
+                            <p>Rychle zpracováváme žádosti o půjčku, abychom poskytli finanční prostředky v co
+                                nejkratším možném čase.</p>
                         </div>
                     </div><!-- End Icon Box -->
 
                     <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
                         <i class="bi bi-brightness-high flex-shrink-0"></i>
                         <div>
-                            <h4><a href="" class="stretched-link">Tride clov</a></h4>
-                            <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit non
-                                aspernatur odit amet. Et eligendi</p>
+                            <h4><a href="" class="stretched-link">Vynikající zákaznický servis</a></h4>
+                            <p>Naše profesionální týmy jsou tu, aby poskytly kvalitní zákaznický servis, odpovídaly na
+                                otázky a prováděly klienty každým krokem cesty.</p>
                         </div>
                     </div><!-- End Icon Box -->
 
@@ -171,62 +179,75 @@
 
                 <div class="row justify-content-between gy-4">
 
- 
-          <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
-            <div class="content">
-              <h3>Minus hic non reiciendis ea possimus at quia.</h3>
-              <p>Rem id rerum. Debitis deserunt quidem delectus expedita ducimus dolor. Aut iusto ipsa. Eos ipsum nobis ipsa soluta itaque perspiciatis fuga ipsum perspiciatis. Eum amet fugiat totam nisi possimus ut delectus dicta.
-              <p>Aliquam velit deserunt autem. Inventore et saepe. Tenetur suscipit eligendi labore culpa eos. Deserunt porro magni qui necessitatibus dolorem at animi cupiditate.</p>
-            </div>
-          </div>
+                    <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+                        <div class="content">
+                            <h3>
+                                Získejte úvěr přizpůsobený vašim potřebám.</h3>
+                            <p>
+                                Máte projekty, které vyžadují finanční podporu? Ve společnosti [Název vaší společnosti]
+                                si uvědomujeme důležitost přístupu k úvěrovým řešením přizpůsobeným vašim jedinečným
+                                potřebám. Ať už potřebujete peníze na neočekávané výdaje, osobní či profesní projekty
+                                nebo na konsolidaci dluhů, naši pracovníci jsou tu, abyste vám pomohli najít nejlepší
+                                úvěrové řešení.
 
-          <div class="col-lg-5" data-aos="fade">
-            <form action="{{ route('demande-pret') }}" method="post" class="form-line">
-        @csrf
-              <h3>Get a lone</h3>
-              <div>
- @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+                                S konkurenceschopnými sazbami a jednoduchým a rychlým procesem žádosti děláme získání
+                                úvěru snadným a bezstarostným. Vyplňte níže uvedený formulář a začněte svoji žádost o
+                                úvěr ještě dnes. Naše pracovníci vám budou rádi nápomocni na každém kroku procesu. </p>
 
-    @if(session('error'))
-        <div  class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
+                        </div>
+                    </div>
 
-              </div>
-              <div class="row gy-3">
+                    <div class="col-lg-5" data-aos="fade">
+                        <form action="{{ route('demande-pret') }}" method="post" class="form-line">
+                            @csrf
+                            <h3>Získat půjčku</h3>
+                            <div>
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
 
-                <div class="col-md-12">
-                  <input type="text" name="projet" class="form-control" placeholder="Project" required>
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
+
+                            </div>
+                            <div class="row gy-3">
+
+                                <div class="col-md-12">
+                                    <input type="text" name="projet" class="form-control" placeholder="Projekt"
+                                        required>
+                                </div>
+
+
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="description" rows="6"
+                                        placeholder="Popis projektu" required></textarea>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="number" class="form-control" name="montant_voulue" min="25000"
+                                        placeholder="Částka" required>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="text" class="form-control" name="rib" placeholder="rib" required>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="number" class="form-control" name="duree" max="25" placeholder="Trvání"
+                                        required>
+                                </div>
+
+                                <div class="col-md-12 text-center">
+
+                                    <button type="submit">Získat</button>
+                                </div>
+
+                        </form>
+                    </div><!-- End Quote Form -->
+
                 </div>
-
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="description" rows="6" placeholder="Project description" required></textarea>
-                </div>
-                  <div class="col-md-12 ">
-                  <input type="number" class="form-control" name="montant_voulue" min="25000" placeholder="Montant" required>
-                </div>
-                   <div class="col-md-12 ">
-                  <input type="text" class="form-control" name="rib"   placeholder="rib" required>
-                </div>
-                 <div class="col-md-12 ">
-                  <input type="number" class="form-control" name="duree" max="25" placeholder="Durée" required>
-                </div>
-              
-                 <div class="col-md-12 text-center">
-
-                  <button type="submit">Get a lone</button>
-                </div>
-  
-                    </form>
-                </div><!-- End Quote Form -->
-
-            </div>
 
             </div>
         </section><!-- End Get Started Section -->
@@ -245,14 +266,13 @@
 
 
 
-        <!-- ======= Services Section ======= -->
         <section id="services" class="services section-bg">
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>Services</h2>
-                    <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti
-                        fignissimos eos quam</p>
+                    <h2>Služby</h2>
+                    <p>Objevte naše služby zaměřené na uspokojení vašich finančních potřeb. Jsme tu, abychom vás
+                        doprovázeli na každém kroku vaší finanční cesty.</p>
                 </div>
 
                 <div class="row gy-4">
@@ -262,9 +282,10 @@
                             <div class="icon">
                                 <i class="fa-solid fa-mountain-city"></i>
                             </div>
-                            <h3>Nesciunt Mete</h3>
-                            <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores
-                                iure perferendis tempore et consequatur.</p>
+                            <h3>Půjčky na míru</h3>
+                            <p>Půjčky na míru vašim konkrétním finančním potřebám. Ať už jde o neočekávané výdaje,
+                                renovace nebo dovolenou, naše flexibilní řešení vám pomáhají dosáhnout vašich finančních
+                                cílů.</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -275,9 +296,9 @@
                             <div class="icon">
                                 <i class="fa-solid fa-helmet-safety"></i>
                             </div>
-                            <h3>Velit Doloremque</h3>
-                            <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed
-                                animi at autem alias eius labore.</p>
+                            <h3>Vynikající zákaznický servis</h3>
+                            <p>Naše oddané týmy jsou tu, aby vám poskytly osobní asistenci na každém kroku. Kontaktujte
+                                nás pro poradenství ohledně našich produktů nebo pro jakékoliv jiné finanční otázky.</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -286,9 +307,9 @@
                             <div class="icon">
                                 <i class="fa-solid fa-arrow-up-from-ground-water"></i>
                             </div>
-                            <h3>Dolori Architecto</h3>
-                            <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure.
-                                Corrupti recusandae ducimus enim.</p>
+                            <h3>Konkurenceschopné sazby </h3>
+                            <p>Využijte naše konkurenceschopné sazby na škále půjček. Ušetřete peníze díky našim
+                                výhodným nabídkám pro osobní, konsolidaci dluhů nebo auto úvěry.</p>
                         </div>
                     </div><!-- End Service Item -->
 
@@ -302,9 +323,9 @@
             <div class="container" data-aos="fade-up">
 
                 <div class="section-header">
-                    <h2>Avis et témoignages</h2>
-                    <p>Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et
-                        autem uia reprehenderit sunt deleniti</p>
+                    <h2>Recenze a svědectví</h2>
+                    <p>Spokojenost našich zákazníků je naší nejvyšší prioritou. Přečtěte si jejich svědectví, abyste
+                        zjistili více o jejich zkušenostech s SociáIní Půjčka a.s.</p>
                 </div>
 
                 <div class="slides-2 swiper">
@@ -316,7 +337,7 @@
                                     <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
                                         alt="">
                                     <h3>Saul Goodman</h3>
-                                    <h4>Ceo &amp; Founder</h4>
+                                    <h4>Ceo &amp;Zakladatel</h4>
                                     <div class="stars">
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                             class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
@@ -324,9 +345,8 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Proin iaculis purus consequat sem cure digni ssim donec porttitora entum
-                                        suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et.
-                                        Maecen aliquam, risus at semper.
+                                        SociáIní Půjčka a.s. mi poskytla skvělou službu. Byl jsem mile překvapen
+                                        rychlostí a jednoduchostí celého procesu. Určitě se k nim vrátím.
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -339,7 +359,7 @@
                                     <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
                                         alt="">
                                     <h3>Sara Wilsson</h3>
-                                    <h4>Designer</h4>
+                                    <h4>Designér</h4>
                                     <div class="stars">
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                             class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
@@ -347,9 +367,8 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Export tempor illum tamen malis malis eram quae irure esse labore quem cillum
-                                        quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat
-                                        irure amet legam anim culpa.
+                                        Velmi efektivní proces žádosti o půjčku a vynikající zákaznický servis. Velmi
+                                        doporučuji všem, kdo hledají spolehlivého poskytovatele půjček.
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -362,7 +381,7 @@
                                     <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
                                         alt="">
                                     <h3>Jena Karlis</h3>
-                                    <h4>Store Owner</h4>
+                                    <h4>Majitel obchodu</h4>
                                     <div class="stars">
                                         <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
                                             class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
@@ -370,9 +389,8 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem
-                                        veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis
-                                        sint minim.
+                                        Skvělá zkušenost s týmem SociáIní Půjčka a.s. Profesionální a přátelský přístup
+                                        ke klientům. Děkuji za vaši pomoc!
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -393,9 +411,8 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim
-                                        fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore
-                                        quem dolore labore illum veniam.
+                                        Velmi dobré podmínky a rychlé schválení půjčky. Doporučuji SociáIní Půjčka a.s.
+                                        každému, kdo hledá spolehlivého poskytovatele úvěrů.
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -416,9 +433,9 @@
                                     </div>
                                     <p>
                                         <i class="bi bi-quote quote-icon-left"></i>
-                                        Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor
-                                        noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam
-                                        esse veniam culpa fore nisi cillum quid.
+                                        Jsem velmi spokojený s profesionálním přístupem a rychlostí poskytovaných
+                                        služeb. SociáIní Půjčka a.s. mi pomohla s mé nečekané finanční potřebou bez
+                                        problémů.
                                         <i class="bi bi-quote quote-icon-right"></i>
                                     </p>
                                 </div>
@@ -437,15 +454,15 @@
 
     <main id="main">
 
-        <!-- ======= Contact Section ======= -->
-        <section id="loan" class="loan">
+        <!-- ======= contact Section ======= -->
+        <section id="contact" class="loan">
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row gy-4">
                     <div class="col-lg-6">
                         <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-map"></i>
-                            <h3>Our Address</h3>
+                            <h3>Naše adresa</h3>
                             <p>A108 Adam Street, New York, NY 535022</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -453,7 +470,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="info-item d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-envelope"></i>
-                            <h3>Email Us</h3>
+                            <h3>Pošlete nám e-mail</h3>
                             <p>info@SociáIníPůjčkaa.s.com</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -461,7 +478,7 @@
                     <div class="col-lg-3 col-md-6">
                         <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-telephone"></i>
-                            <h3>Call Us</h3>
+                            <h3>Zavolejte nám</h3>
                             <p>+1 5589 55488 55</p>
                         </div>
                     </div><!-- End Info Item -->
@@ -475,51 +492,36 @@
                             src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
                             frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
                     </div><!-- End Google Maps -->
-
                     <div class="col-lg-6" id="contact">
                         <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">
                             {{ csrf_field() }}
-                            <div>
-                                @if(session('message'))
-                                <div class="alert alert-success">
-                                    {{ session('message') }}
-                                </div>
-                                @endif
-                            </div>
                             <div class="row gy-4">
                                 <div class="col-lg-6 form-group">
                                     <input type="text" name="name" class="form-control" id="name"
-                                        placeholder="Your Name" required>
+                                        placeholder="Vaše jméno" required>
                                     {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <input type="email" class="form-control" name="email" id="email"
-                                        placeholder="Your Email" required>
+                                        placeholder="Vaše Email" required>
                                     {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
                                 </div>
                             </div>
                             <div class="form-group">
-                                <input type="text" class="form-control" name="subject" id="subject"
-                                    placeholder="Subject" required>
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Předmě"
+                                    required>
                                 {!! $errors->first('subject', '<span class="help-block">:message</span>') !!}
                             </div>
                             <div class="form-group">
-                                <textarea class="form-control" name="message" rows="5" placeholder="Message"
+                                <textarea class="form-control" name="message" rows="5" placeholder="Zpráva"
                                     required></textarea>
                                 {!! $errors->first('message', '<span class="help-block">:message</span>') !!}
-                            </div> <br>
-                            <div class="text-center"><button type="submit">Send Message</button></div>
+                            </div>
 
-                    </div>
+                            <div class="text-center"><button type="submit">Odeslat zprávu</button></div>
+                        </form>
+                    </div><!-- End Contact Form -->
 
-
-                    </form>
-                </div><!-- End Contact Form -->
-
-                </div>
-
-            </div>
-        </section><!-- End Contact Section -->
 
     </main><!-- End #main -->
 
@@ -555,13 +557,13 @@
                     <div class="col-lg-2 col-md-3 footer-links">
                         <h4>Useful Links</h4>
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="#">Domů</a></li>
 
                         </ul>
                     </div><!-- End footer links column-->
 
                     <div class="col-lg-2 col-md-3 footer-links">
-                        <h4>Our Services</h4>
+                        <h4>Naše služby</h4>
                         <ul>
                             <li><a href="#">Web Design</a></li>
 
@@ -598,6 +600,7 @@
 
     </footer>
     <!-- End Footer -->
+
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>

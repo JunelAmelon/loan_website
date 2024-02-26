@@ -1,9 +1,9 @@
 <x-mail::message>
-# Code de Réinitialisation de mot de passe
+# Kód pro obnovení hesla
 
-Votre code de réinitialisation de mot de passe est ``{{ $resetCode }}``.<br>
-Veuillez l'utiliser pour réinitialiser votre mot de passe.
+Váš kód pro obnovení hesla je ``{{ $resetCode }}``.<br>
+Prosím, použijte tento kód k obnovení vašeho hesla.
 
-Thanks,<br>
+Děkuji,<br>
 {{ config('app.name') }}
 </x-mail::message>
