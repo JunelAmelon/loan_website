@@ -55,7 +55,9 @@ class DemandeController extends Controller
 
         // Calcul du montant mensuel à rembourser
         $montantMensuel = ($montantDemande * $tauxInteretMensuel) / (1 - pow(1 + $tauxInteretMensuel, -$nombrePaiements));
-
+        Session::put('montantmensuel', $montantMensuel);
+        Session::put('dureeAnnees', $dureeAnnees);
+        Session::put('montantDemande', $montantDemande);
         // Désactiver les contraintes de clé étrangère
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');

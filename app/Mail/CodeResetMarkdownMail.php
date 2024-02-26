@@ -26,7 +26,7 @@ class CodeResetMarkdownMail extends Mailable
     public function build()
     {
         return $this->from("pret@Noreply.com")
-                    ->subject("Réinitialisation de mot de passe")
+                    ->subject("Resetovat heslo")
                     ->markdown('emails.markdowncodereset')
                     ->with([
                         'CodeReset' => $this->resetCode,
