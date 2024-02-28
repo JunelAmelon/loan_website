@@ -65,7 +65,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
-            <h2 data-aos="fade-down">Vítejte na <span>SociáIní Půjčka a.s</span></h2>
+            <h2 data-aos="fade-down">Vítejte na <br><span>SociáIní Půjčka a.s</span></h2>
             <p data-aos="fade-up">
               U společnosti SociáIní Půjčka a.s. chápeme, že každý jedinec může mít různé finanční potřeby v různých
               obdobích života. Proto se zavazujeme poskytovat jednoduchá, rychlá a bezpečná půjčovací řešení, abychom

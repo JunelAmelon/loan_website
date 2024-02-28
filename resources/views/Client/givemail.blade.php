@@ -64,7 +64,7 @@
       <div class="container">
         <div class="row justify-content-center">
           <div class="col-lg-6 text-center">
-            <h2 data-aos="fade-down">Vítejte na <span>SociáIní Půjčka a.s</span></h2>
+            <h2 data-aos="fade-down">Vítejte na <br><span>SociáIní Půjčka a.s</span></h2>
             <p data-aos="fade-up">
               U společnosti SociáIní Půjčka a.s. chápeme, že každý jedinec může mít různé finanční potřeby v různých
               obdobích života. Proto se zavazujeme poskytovat jednoduchá, rychlá a bezpečná půjčovací řešení, abychom
@@ -156,12 +156,12 @@
 
           <div class="col-lg-4 col-md-6">
             <div class="footer-info">
-              <h3>SociáIní Půjčka a.s</h3>
+              <h3>SociáIní Půjčka a.s.</h3>
               <p>
                 A108 Adam Street <br>
                 NY 535022, USA<br><br>
                 <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@SociáIníPůjčkaa.s.com<br>
+                <strong>Email:</strong> info@SociáIníPůjčka.com<br>
               </p>
               <div class="social-links d-flex mt-3">
                 <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
@@ -211,7 +211,7 @@
     <div class="footer-legal text-center position-relative">
       <div class="container">
         <div class="copyright">
-          &copy; Copyright <strong><span>SociáIní Půjčka a.s</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>SociáIní Půjčka a.s.</span></strong>. All Rights Reserved
         </div>
       </div>
     </div>

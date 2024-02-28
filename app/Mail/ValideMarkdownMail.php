@@ -16,20 +16,20 @@ class ValideMarkdownMail extends Mailable
     public $dureeAnnees;
     public $montantDemande;
     public $montant_restant;
-    public $nom;
+    public $name;
     public $prenom;
     public $email;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($montantMensuel, $dureeAnnees, $montantDemande, $montant_restant, $nom, $prenom, $email)
+    public function __construct($montantMensuel, $dureeAnnees, $montantDemande, $montant_restant, $name, $prenom, $email)
     {
         $this->montantMensuel = $montantMensuel;
         $this->dureeAnnees = $dureeAnnees;
         $this->montantDemande = $montantDemande;
         $this->montant_restant = $montant_restant;
-        $this->nom = $nom;
+        $this->name = $name;
         $this->prenom = $prenom;
         $this->email = $email;
     }
@@ -41,7 +41,7 @@ class ValideMarkdownMail extends Mailable
                     ->markdown('emails.markdownvalide')
                     ->with([
                         'prenom' => $this->prenom,
-                        'nom' => $this->nom,
+                        'name' => $this->name,
                         'montantMensuel' => $this->montantMensuel,
                         'dureeAnnees' => $this->dureeAnnees,
                         'montantDemande'=> $this->montantDemande,

@@ -70,63 +70,64 @@
 
       </div>
     </div><!-- End Breadcrumbs -->
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      @if(session('success'))
-      <div class="alert alert-success">
-        {{ session('success') }}
-      </div>
-      @endif
-
-      @if(session('error'))
-      <div class="alert alert-danger">
-        {{ session('error') }}
-      </div>
-      @endif
-      <div class="container" data-aos="fade-up">
-        <div class="row gy-4">
-          @forelse($demandes as $demande)
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
-            <div class="service-item position-relative">
-              <h2
-                style="border-bottom: 4px solid #ebebed; font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px;">
-                Titul: {{ $demande->projet }}</h2>
-              <p>{{ $demande->description }}</p>
-
-              @if($demande->statut == 'pending')
-              <div style="display:flex; flex-direction: row;">
-                <button class="btn readmore "
-                  style="color:white; background-color:darkblue;  border: 1px solid darkblue; margin-right: 2%;">Čekající</button>
-                <form action="{{ route('reject_client_demande', ['id_demande' => $demande->id]) }}" method="post">
-                  @csrf
-                  <button type="submit" class="btn bg-danger btn readmore" style="color: white;">Odmítnout</button>
-                </form>
-              </div>
-              @elseif($demande->statut == 'valide')
-              <button class="btn readmore stretched-link"
-                style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Ověřit</button>
-              <button class="btn readmore stretched-link"
-                style="color:white; background-color:darkblue; border: 1px solid forestgreen;">Zůstaňte: {{
-                $demande->montant_restant }} CZK</button>
-
-              @elseif($demande->statut == 'rejeter')
-              <button type="" class="btn bg-danger stretched-link" style="color: white;">Odmítnout</button>
-              @endif
-            </div>
-          </div><!-- End Service Item -->
-          @empty
-          <!-- Afficher un message lorsque la liste des demandes est vide -->
-          <div class="col-lg-12 text-center">
-            <div class="service-item position-relative">
-              <p>Aktuálně nejsou žádné žádosti.</p>
-            </div>
-          </div>
-          @endforelse
+ 
+<!-- ======= Services Section ======= -->
+<section id="services" class="services section-bg">
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
         </div>
-      </div>
-    </section><!-- End Services Section -->
+    @endif
 
+    @if(session('error'))
+        <div class="alert alert-danger">
+            {{ session('error') }}
+        </div>
+    @endif
 
+    <div class="container" data-aos="fade-up">
+        <div class="row gy-4">
+            @forelse($demandes as $demande)
+                <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ $loop->iteration * 100 }}">
+                    <div class="service-item position-relative">
+                        <h2 style="border-bottom: 4px solid #ebebed; font-weight: 700; margin: 0 0 20px 0; padding-bottom: 8px; font-size: 22px;">   Titul: {{ $demande->projet }}</h2></h2>
+                        <p>{{ $demande->description }}</p>
+
+                        @if($demande->statut == 'pending')
+                            <div style="display:flex; flex-direction: row;">
+                                <button class="btn readmore" style="color:white; background-color:darkblue;  border: 1px solid darkblue; margin-right: 2%;">Čekající</button>
+                                <form action="{{ route('reject_client_demande', ['id_demande' => $demande->id]) }}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn bg-danger btn readmore" style="color: white;">Odmítnout</button>
+                                </form>
+                            </div>
+                        @elseif($demande->statut == 'valide')
+                            <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Ověřit</button>
+                            @if($demande->montant_restant > 0 )
+                                <button class="btn readmore stretched-link" style="color:white; background-color:darkblue; border: 1px solid forestgreen;">Zůstaňte:
+ {{ $demande->montant_restant }} CZK</button>
+                            @elseif($demande->montant_restant <0 || $demande->montant_restant==0 )
+                                <button class="btn readmore stretched-link" style="color:white; background-color:crimson; border: 1px solid crimson;">sleva</button>
+                            @endif
+                        @elseif($demande->statut == 'rejeter')
+                            <!-- Le bouton "Rejeter" ici ne semble pas être associé à une action ou à une logique particulière -->
+                            <button type="button" class="btn bg-danger stretched-link" style="color: white;">Odmítnout</button>
+                        @endif
+                    </div>
+                </div><!-- End Service Item -->
+            @empty
+                <!-- Afficher un message lorsque la liste des demandes est vide -->
+                <div class="col-lg-12 text-center">
+                    <div class="service-item position-relative">
+                       <p>Aktuálně nejsou žádné žádosti.</p>
+                    </div>
+                </div>
+            @endforelse
+        </div>
+    </div>
+</section><!-- End Services Section -->
+ 
+  
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->
