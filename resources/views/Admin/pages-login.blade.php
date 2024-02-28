@@ -36,8 +36,8 @@
 
               <div class="d-flex justify-content-center py-4">
                 <a href="/" class="logo d-flex align-items-center w-auto">
-                  <img src="assets-admin/img/logo.png" alt="">
-                  <span class="d-none d-lg-block">GestAdmin</span>
+                  <!-- <img src="assets-admin/img/logo.png" alt=""> -->
+                  <span class="d-none d-lg-block" style="color: darkblue;">GestAdmin</span>
                 </a>
               </div><!-- End Logo -->
 
@@ -50,13 +50,13 @@
                     <p class="text-center small">Entrez votre identifiant et votre mot de passe</p>
                   </div>
 
-                  <form class="row g-3 needs-validation" novalidate>
-
+                  <form class="row g-3 needs-validation" action="{{route('signTreat')}}" method="post">
+                    @csrf
                     <div class="col-12">
                       <label for="yourUsername" class="form-label">Identifiant</label>
                       <div class="input-group has-validation">
                         <span class="input-group-text" id="inputGroupPrepend">@</span>
-                        <input type="text" name="identifiant" class="form-control" required>
+                        <input type="text" name="email" class="form-control" required>
                         <div class="invalid-feedback">S'il vous plait entrez votre identifiant</div>
                       </div>
                     </div>
@@ -67,12 +67,6 @@
                       <div class="invalid-feedback">S'il vous plait entrez votre mot de passe</div>
                     </div>
 
-                    <div class="col-12">
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" value="true" id="rememberMe">
-                        <label class="form-check-label" for="rememberMe">Remember me</label>
-                      </div>
-                    </div>
                     <div class="col-12">
                       <button class="btn btn-primary w-100" style="background-color: darkblue; color: white;" type="submit">Connecter</button>
                     </div>

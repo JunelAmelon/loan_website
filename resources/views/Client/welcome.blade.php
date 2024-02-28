@@ -2,545 +2,622 @@
 <html lang="en">
 
 <head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>loan website</title>
-  <meta content="" name="description">
-  <meta content="" name="keywords">
+    <title>loan website</title>
+    <meta content="" name="description">
+    <meta content="" name="keywords">
 
 
 
-  <!-- Google Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Roboto:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Work+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+        rel="stylesheet">
 
-  <!-- Vendor CSS Files -->
-  <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
-  <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+    <!-- Vendor CSS Files -->
+    <link href="{{ asset('assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/aos/aos.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('assets/vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
 
-  <!-- Template Main CSS File -->
-  <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
+    <!-- Template Main CSS File -->
+    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet">
 
 
 </head>
 
 <body>
 
-  <!-- ======= Header ======= -->
-  <header id="header" class="header d-flex align-items-center">
-    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+    <!-- ======= Header ======= -->
+    <header id="header" class="header d-flex align-items-center">
+        <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+            <a href="index.html" class="logo d-flex align-items-center">
 
-        <h1>SociáIní  Půjčka a.s<span>.</span></h1>
-      </a>
+                <h1>SociáIní Půjčka a.s<span>.</span></h1>
+            </a>
 
-      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
-      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
-      <nav id="navbar" class="navbar">
-        <ul>
-          <li><a href="/index" class="active">Home</a></li>
-          <li><a  href="#about">About</a></li>
-          <li><a  href="#services">Services</a></li>
-           <li><a  href="/mes-demandes">demandes</a></li>
-          <li><a   href="#contact">Contact</a></li>
-           <li><a   href="{{ route('deconnexion') }}">log out</a></li>
-        </ul>
-      </nav><!-- .navbar -->
+            <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+            <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+            <nav id="navbar" class="navbar">
+                <ul>
+                    <li><a href="/index" class="active">Domů</a></li>
+                    <li><a href="#about">O nás</a></li>
+                    <li><a href="#services">Služby</a></li>
+                    <li><a href="/mes-demandes">Poptávky</a></li>
+                    <li><a href="#contact">Kontakt</a></li>
 
-    </div>
-  </header><!-- End Header -->
+                    <li><a href="{{ route('deconnexion') }}">Odhlásit se</a></li>
+                </ul>
+            </nav><!-- .navbar -->
 
-  <!-- ======= Hero Section ======= -->
-  <section id="hero" class="hero">
-
-    <div class="info d-flex align-items-center">
-      <div class="container">
-        <div class="row justify-content-center">
-          <div class="col-lg-6 text-center">
-            <h2 data-aos="fade-down">Welcome to <span>SociáIní  Půjčka a.s</span></h2>
-            <p data-aos="fade-up">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-            <a data-aos="fade-up" data-aos-delay="200" href="#" class="btn-get-started">@if (Session::has('prenom')){{ Session::get('prenom') }} @endif <span><i class="bi-person-workspace"></i></span></a>
-          </div>
         </div>
-      </div>
-    </div>
+    </header><!-- End Header -->
 
-    <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-<div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/defile5.jpg )"></div>
-  <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile2.jpg)"></div>
+    <!-- ======= Hero Section ======= -->
+    <section id="hero" class="hero">
 
-    <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile3.jpg)"></div>
-     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile4.jpg)"></div>
- <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile.jpg)"></div>
-     <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile6.jpg)"></div>
+        <div class="info d-flex align-items-center">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-6 text-center">
+                        <h2 data-aos="fade-down">Vítejte na <br><span>SociáIní Půjčka a.s</span></h2>
+                        <p data-aos="fade-up">
+                            U společnosti SociáIní Půjčka a.s. chápeme, že každý jedinec může mít různé finanční potřeby
+                            v různých obdobích života. Proto se zavazujeme poskytovat jednoduchá, rychlá a bezpečná
+                            půjčovací řešení, abychom vám pomohli čelit vašim finančním výzvám.
 
-      <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
-        <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
-      </a>
+                            Ať už potřebujete neočekávanou finanční injekci, konsolidovat své dluhy, nebo uskutečnit
+                            osobní či profesionální projekt, jsme tu pro vás, abychom vám pomohli najít nejlepší řešení
+                            úvěru přizpůsobené vašim jedinečným potřebám. </p>
 
-      <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
-        <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
-      </a>
+                        <a data-aos="fade-up" data-aos-delay="200" href="#" class="btn-get-started">
+                            @if(Session::has('prenom'))
+                            {{ Session::get('prenom') }}
+                            @endif
+                            <span><i class="bi-person-workspace"></i></span></a>
+                    </div>
+                </div>
+            </div>
+        </div>
 
-    </div>
+        <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div class="carousel-item active " style="background-image: url(assets/img/hero-carousel/defile5.jpg )">
+            </div>
+            <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile2.jpg)"></div>
 
-  </section><!-- End Hero Section -->
+            <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile3.jpg)"></div>
+            <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile4.jpg)"></div>
+            <div class="carousel-item  " style="background-image: url(assets/img/hero-carousel/defile.jpg)"></div>
+            <div class="carousel-item " style="background-image: url(assets/img/hero-carousel/defile6.jpg)"></div>
+
+            <a class="carousel-control-prev" href="#hero-carousel" role="button" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+            </a>
+
+            <a class="carousel-control-next" href="#hero-carousel" role="button" data-bs-slide="next">
+                <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+            </a>
+
+        </div>
+
+    </section><!-- End Hero Section -->
 
 
 
 
- <!-- ======= Alt Services Section ======= -->
+    <!-- ======= Alt Services Section ======= -->
     <section id="about" class="alt-services">
-      <div class="container" data-aos="fade-up">
+        <div class="container" data-aos="fade-up">
 
-        <div class="row justify-content-around gy-4">
-          <div class="col-lg-6 img-bg" style="background-image: url(assets/img/defile6.jpg);" data-aos="zoom-in" data-aos-delay="100"></div>
+            <div class="row justify-content-around gy-4">
+                <div class="col-lg-6 img-bg" style="background-image: url(assets/img/defile6.jpg);" data-aos="zoom-in"
+                    data-aos-delay="100"></div>
 
-          <div class="col-lg-5 d-flex flex-column justify-content-center">
-            <h3>Enim quis est voluptatibus aliquid consequatur fugiat</h3>
-            <p>Esse voluptas cumque vel exercitationem. Reiciendis est hic accusamus. Non ipsam et sed minima temporibus laudantium. Soluta voluptate sed facere corporis dolores excepturi</p>
+                <div class="col-lg-5 d-flex flex-column justify-content-center">
+                    <h3>O nás</h3>
+                    <p>Naše společnost, SociáIní Půjčka a.s, poskytuje personalizovaná, transparentní a rychlá finanční
+                        řešení. S oddaným zákaznickým servisem zjednodušujeme proces žádání o půjčku a zajišťujeme
+                        příjemný zážitek našim klientům.</p>
 
-            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
-              <i class="bi bi-easel flex-shrink-0"></i>
-              <div>
-                <h4><a href="" class="stretched-link">Lorem Ipsum</a></h4>
-                <p>Voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident</p>
-              </div>
-            </div><!-- End Icon Box -->
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="100">
+                        <i class="bi bi-easel flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Personalizovaný přístup</a></h4>
+                            <p>V SociáIní Půjčka a.s nabízíme řešení přizpůsobená každému klientovi, která bere v úvahu
+                                jejich jedinečné potřeby.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
 
-            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
-              <i class="bi bi-patch-check flex-shrink-0"></i>
-              <div>
-                <h4><a href="" class="stretched-link">Nemo Enim</a></h4>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque</p>
-              </div>
-            </div><!-- End Icon Box -->
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="200">
+                        <i class="bi bi-patch-check flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Transparentnost a spravedlnost</a></h4>
+                            <p>Zajišťujeme úplnou transparentnost a férové podmínky půjčky pro důvěryhodné finanční
+                                rozhodnutí.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
 
-            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
-              <i class="bi bi-brightness-high flex-shrink-0"></i>
-              <div>
-                <h4><a href="" class="stretched-link">Dine Pad</a></h4>
-                <p>Explicabo est voluptatum asperiores consequatur magnam. Et veritatis odit. Sunt aut deserunt minus aut eligendi omnis</p>
-              </div>
-            </div><!-- End Icon Box -->
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="300">
+                        <i class="bi bi-brightness-high flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Rychlost a efektivita</a></h4>
+                            <p>Rychle zpracováváme žádosti o půjčku, abychom poskytli finanční prostředky v co
+                                nejkratším možném čase.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
 
-            <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-brightness-high flex-shrink-0"></i>
-              <div>
-                <h4><a href="" class="stretched-link">Tride clov</a></h4>
-                <p>Est voluptatem labore deleniti quis a delectus et. Saepe dolorem libero sit non aspernatur odit amet. Et eligendi</p>
-              </div>
-            </div><!-- End Icon Box -->
+                    <div class="icon-box d-flex position-relative" data-aos="fade-up" data-aos-delay="400">
+                        <i class="bi bi-brightness-high flex-shrink-0"></i>
+                        <div>
+                            <h4><a href="" class="stretched-link">Vynikající zákaznický servis</a></h4>
+                            <p>Naše profesionální týmy jsou tu, aby poskytly kvalitní zákaznický servis, odpovídaly na
+                                otázky a prováděly klienty každým krokem cesty.</p>
+                        </div>
+                    </div><!-- End Icon Box -->
 
-          </div>
+                </div>
+            </div>
+
         </div>
-
-      </div>
     </section><!-- End Alt Services Section -->
 
 
 
 
-  <main id="main">
+    <main id="main">
 
-    <!-- ======= Get Started Section ======= -->
-    <section id="get-started contact" class="get-started section-bg">
-      <div class="container">
+        <!-- ======= Get Started Section ======= -->
+        <section id="get-started contact" class="get-started section-bg">
+            <div class="container">
 
-        <div class="row justify-content-between gy-4">
+                <div class="row justify-content-between gy-4">
 
-          <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
-            <div class="content">
-              <h3>Minus hic non reiciendis ea possimus at quia.</h3>
-              <p>Rem id rerum. Debitis deserunt quidem delectus expedita ducimus dolor. Aut iusto ipsa. Eos ipsum nobis ipsa soluta itaque perspiciatis fuga ipsum perspiciatis. Eum amet fugiat totam nisi possimus ut delectus dicta.
-              <p>Aliquam velit deserunt autem. Inventore et saepe. Tenetur suscipit eligendi labore culpa eos. Deserunt porro magni qui necessitatibus dolorem at animi cupiditate.</p>
-            </div>
-          </div>
+                    <div class="col-lg-6 d-flex align-items-center" data-aos="fade-up">
+                        <div class="content">
+                            <h3>
+                                Získejte úvěr přizpůsobený vašim potřebám.</h3>
+                            <p>
+                                Máte projekty, které vyžadují finanční podporu? Ve společnosti [Název vaší společnosti]
+                                si uvědomujeme důležitost přístupu k úvěrovým řešením přizpůsobeným vašim jedinečným
+                                potřebám. Ať už potřebujete peníze na neočekávané výdaje, osobní či profesní projekty
+                                nebo na konsolidaci dluhů, naši pracovníci jsou tu, abyste vám pomohli najít nejlepší
+                                úvěrové řešení.
 
-          <div class="col-lg-5" data-aos="fade">
-            <form action="{{ route('demande-pret') }}" method="post" class="form-line">
-        @csrf
-              <h3>Get a lone</h3>
-              <div>
- @if(session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
-    @endif
+                                S konkurenceschopnými sazbami a jednoduchým a rychlým procesem žádosti děláme získání
+                                úvěru snadným a bezstarostným. Vyplňte níže uvedený formulář a začněte svoji žádost o
+                                úvěr ještě dnes. Naše pracovníci vám budou rádi nápomocni na každém kroku procesu. </p>
 
-    @if(session('error'))
-        <div  class="alert alert-danger">
-            {{ session('error') }}
-        </div>
-    @endif
-
-              </div>
-              <div class="row gy-3">
-
-                <div class="col-md-12">
-                  <input type="text" name="projet" class="form-control" placeholder="Project" required>
-                </div>
-
-
-                <div class="col-md-12">
-                  <textarea class="form-control" name="description" rows="6" placeholder="Project description" required></textarea>
-                </div>
-                  <div class="col-md-12 ">
-                  <input type="number" class="form-control" name="montant_voulue" min="25000" placeholder="Montant" required>
-                </div>
-                 <div class="col-md-12 ">
-                  <input type="number" class="form-control" name="duree" max="25" placeholder="Durée" required>
-                </div>
-                 <div class="col-md-12 text-center">
-
-                  <button type="submit">Get a lone</button>
-                </div>
+                        </div>
                     </div>
 
-              </div>
-            </form>
-          </div><!-- End Quote Form -->
+                    <div class="col-lg-5" data-aos="fade">
+                        <form action="{{ route('demande-pret') }}" method="post" class="form-line">
+                            @csrf
+                            <h3>Získat půjčku</h3>
+                            <div>
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
 
-        </div>
+                                @if(session('error'))
+                                <div class="alert alert-danger">
+                                    {{ session('error') }}
+                                </div>
+                                @endif
 
-      </div>
-    </section><!-- End Get Started Section -->
+                            </div>
+                            <div class="row gy-3">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    <!-- ======= Services Section ======= -->
-    <section id="services" class="services section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Services</h2>
-          <p>Voluptatem quibusdam ut ullam perferendis repellat non ut consequuntur est eveniet deleniti fignissimos eos quam</p>
-        </div>
-
-        <div class="row gy-4">
-
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
-            <div class="service-item  position-relative">
-              <div class="icon">
-                <i class="fa-solid fa-mountain-city"></i>
-              </div>
-              <h3>Nesciunt Mete</h3>
-              <p>Provident nihil minus qui consequatur non omnis maiores. Eos accusantium minus dolores iure perferendis tempore et consequatur.</p>
-               </div>
-          </div><!-- End Service Item -->
+                                <div class="col-md-12">
+                                    <input type="text" name="projet" class="form-control" placeholder="Projekt"
+                                        required>
+                                </div>
 
 
+                                <div class="col-md-12">
+                                    <textarea class="form-control" name="description" rows="6"
+                                        placeholder="Popis projektu" required></textarea>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="number" class="form-control" name="montant_voulue" min="25000"
+                                        placeholder="Částka" required>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="text" class="form-control" name="rib" placeholder="rib" required>
+                                </div>
+                                <div class="col-md-12 ">
+                                    <input type="number" class="form-control" name="duree" max="25" placeholder="Trvání"
+                                        required>
+                                </div>
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="fa-solid fa-helmet-safety"></i>
-              </div>
-              <h3>Velit Doloremque</h3>
-              <p>Cumque et suscipit saepe. Est maiores autem enim facilis ut aut ipsam corporis aut. Sed animi at autem alias eius labore.</p>
+                                <div class="col-md-12 text-center">
+
+                                    <button type="submit">Získat</button>
+                                </div>
+
+                        </form>
+                    </div><!-- End Quote Form -->
+
                 </div>
-          </div><!-- End Service Item -->
 
-          <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
-            <div class="service-item position-relative">
-              <div class="icon">
-                <i class="fa-solid fa-arrow-up-from-ground-water"></i>
-              </div>
-              <h3>Dolori Architecto</h3>
-              <p>Hic molestias ea quibusdam eos. Fugiat enim doloremque aut neque non et debitis iure. Corrupti recusandae ducimus enim.</p>
-               </div>
-          </div><!-- End Service Item -->
-
-        </div>
-
-      </div>
-    </section><!-- End Services Section -->
-
-    <!-- ======= Testimonials Section ======= -->
-    <section id="testimonials" class="testimonials section-bg">
-      <div class="container" data-aos="fade-up">
-
-        <div class="section-header">
-          <h2>Avis et témoignages</h2>
-          <p>Quam sed id excepturi ccusantium dolorem ut quis dolores nisi llum nostrum enim velit qui ut et autem uia reprehenderit sunt deleniti</p>
-        </div>
-
-        <div class="slides-2 swiper">
-          <div class="swiper-wrapper">
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img" alt="">
-                  <h3>Saul Goodman</h3>
-                  <h4>Ceo &amp; Founder</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Proin iaculis purus consequat sem cure digni ssim donec porttitora entum suscipit rhoncus. Accusantium quam, ultricies eget id, aliquam eget nibh et. Maecen aliquam, risus at semper.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img" alt="">
-                  <h3>Sara Wilsson</h3>
-                  <h4>Designer</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Export tempor illum tamen malis malis eram quae irure esse labore quem cillum quid cillum eram malis quorum velit fore eram velit sunt aliqua noster fugiat irure amet legam anim culpa.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img" alt="">
-                  <h3>Jena Karlis</h3>
-                  <h4>Store Owner</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Enim nisi quem export duis labore cillum quae magna enim sint quorum nulla quem veniam duis minim tempor labore quem eram duis noster aute amet eram fore quis sint minim.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img" alt="">
-                  <h3>Matt Brandon</h3>
-                  <h4>Freelancer</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Fugiat enim eram quae cillum dolore dolor amet nulla culpa multos export minim fugiat minim velit minim dolor enim duis veniam ipsum anim magna sunt elit fore quem dolore labore illum veniam.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-            <div class="swiper-slide">
-              <div class="testimonial-wrap">
-                <div class="testimonial-item">
-                  <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img" alt="">
-                  <h3>John Larson</h3>
-                  <h4>Entrepreneur</h4>
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                  </div>
-                  <p>
-                    <i class="bi bi-quote quote-icon-left"></i>
-                    Quis quorum aliqua sint quem legam fore sunt eram irure aliqua veniam tempor noster veniam enim culpa labore duis sunt culpa nulla illum cillum fugiat legam esse veniam culpa fore nisi cillum quid.
-                    <i class="bi bi-quote quote-icon-right"></i>
-                  </p>
-                </div>
-              </div>
-            </div><!-- End testimonial item -->
-
-          </div>
-          <div class="swiper-pagination"></div>
-        </div>
-
-      </div>
-    </section><!-- End Testimonials Section -->
-
-  </main><!-- End #main -->
-
-
-  <main id="main">
-
-    <!-- ======= Contact Section ======= -->
-    <section id="loan" class="loan">
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-          <div class="col-lg-6">
-            <div class="info-item  d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-map"></i>
-              <h3>Our Address</h3>
-              <p>A108 Adam Street, New York, NY 535022</p>
             </div>
-          </div><!-- End Info Item -->
+        </section><!-- End Get Started Section -->
 
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-envelope"></i>
-              <h3>Email Us</h3>
-              <p>info@SociáIníPůjčkaa.s.com</p>
-            </div>
-          </div><!-- End Info Item -->
 
-          <div class="col-lg-3 col-md-6">
-            <div class="info-item  d-flex flex-column justify-content-center align-items-center">
-              <i class="bi bi-telephone"></i>
-              <h3>Call Us</h3>
-              <p>+1 5589 55488 55</p>
-            </div>
-          </div><!-- End Info Item -->
 
-        </div>
 
-        <div class="row gy-4 mt-1">
 
-          <div class="col-lg-6 ">
-            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621" frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-          </div><!-- End Google Maps -->
 
-    <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" role="form" class="form-line">
-              <div class="row gy-4">
-                <div class="col-lg-6 form-group">
-                  <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
+
+
+
+
+
+
+
+
+
+        <section id="services" class="services section-bg">
+            <div class="container" data-aos="fade-up">
+
+                <div class="section-header">
+                    <h2>Služby</h2>
+                    <p>Objevte naše služby zaměřené na uspokojení vašich finančních potřeb. Jsme tu, abychom vás
+                        doprovázeli na každém kroku vaší finanční cesty.</p>
                 </div>
-                <div class="col-lg-6 form-group">
-                  <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
+
+                <div class="row gy-4">
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="100">
+                        <div class="service-item  position-relative">
+                            <div class="icon">
+                                <i class="fa-solid fa-mountain-city"></i>
+                            </div>
+                            <h3>Půjčky na míru</h3>
+                            <p>Půjčky na míru vašim konkrétním finančním potřebám. Ať už jde o neočekávané výdaje,
+                                renovace nebo dovolenou, naše flexibilní řešení vám pomáhají dosáhnout vašich finančních
+                                cílů.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="500">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="fa-solid fa-helmet-safety"></i>
+                            </div>
+                            <h3>Vynikající zákaznický servis</h3>
+                            <p>Naše oddané týmy jsou tu, aby vám poskytly osobní asistenci na každém kroku. Kontaktujte
+                                nás pro poradenství ohledně našich produktů nebo pro jakékoliv jiné finanční otázky.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
+                    <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="600">
+                        <div class="service-item position-relative">
+                            <div class="icon">
+                                <i class="fa-solid fa-arrow-up-from-ground-water"></i>
+                            </div>
+                            <h3>Konkurenceschopné sazby </h3>
+                            <p>Využijte naše konkurenceschopné sazby na škále půjček. Ušetřete peníze díky našim
+                                výhodným nabídkám pro osobní, konsolidaci dluhů nebo auto úvěry.</p>
+                        </div>
+                    </div><!-- End Service Item -->
+
                 </div>
-              </div> <br>
-              <div class="form-group">
-                <input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" required>
-              </div> <br>
-              <div class="form-group">
-                <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
-              </div> <br>
 
-              <div class="text-center"><button type="submit">Send Message</button></div>
-            </form>
-          </div><!-- End Contact Form -->
-
-        </div>
-
-      </div>
-    </section><!-- End Contact Section -->
-
-  </main><!-- End #main -->
-
-  <!-- ======= Footer ======= -->
-  <footer id="footer" class="footer">
-
-    <div class="footer-content position-relative">
-      <div class="container">
-        <div class="row">
-
-          <div class="col-lg-4 col-md-6">
-            <div class="footer-info">
-              <h3>SociáIní  Půjčka a.s</h3>
-              <p>
-                A108 Adam Street <br>
-                NY 535022, USA<br><br>
-                <strong>Phone:</strong> +1 5589 55488 55<br>
-                <strong>Email:</strong> info@SociáIníPůjčkaa.s.com<br>
-              </p>
-              <div class="social-links d-flex mt-3">
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-twitter"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-facebook"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-instagram"></i></a>
-                <a href="#" class="d-flex align-items-center justify-content-center"><i class="bi bi-linkedin"></i></a>
-              </div>
             </div>
-          </div><!-- End footer info column-->
+        </section><!-- End Services Section -->
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
+        <!-- ======= Testimonials Section ======= -->
+        <section id="testimonials" class="testimonials section-bg">
+            <div class="container" data-aos="fade-up">
 
-            </ul>
-          </div><!-- End footer links column-->
+                <div class="section-header">
+                    <h2>Recenze a svědectví</h2>
+                    <p>Spokojenost našich zákazníků je naší nejvyšší prioritou. Přečtěte si jejich svědectví, abyste
+                        zjistili více o jejich zkušenostech s SociáIní Půjčka a.s.</p>
+                </div>
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
+                <div class="slides-2 swiper">
+                    <div class="swiper-wrapper">
 
-            </ul>
-          </div><!-- End footer links column-->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-1.jpg" class="testimonial-img"
+                                        alt="">
+                                    <h3>Saul Goodman</h3>
+                                    <h4>Ceo &amp;Zakladatel</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        SociáIní Půjčka a.s. mi poskytla skvělou službu. Byl jsem mile překvapen
+                                        rychlostí a jednoduchostí celého procesu. Určitě se k nim vrátím.
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-2.jpg" class="testimonial-img"
+                                        alt="">
+                                    <h3>Sara Wilsson</h3>
+                                    <h4>Designér</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        Velmi efektivní proces žádosti o půjčku a vynikající zákaznický servis. Velmi
+                                        doporučuji všem, kdo hledají spolehlivého poskytovatele půjček.
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
 
-            </ul>
-          </div><!-- End footer links column-->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-3.jpg" class="testimonial-img"
+                                        alt="">
+                                    <h3>Jena Karlis</h3>
+                                    <h4>Majitel obchodu</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        Skvělá zkušenost s týmem SociáIní Půjčka a.s. Profesionální a přátelský přístup
+                                        ke klientům. Děkuji za vaši pomoc!
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-4.jpg" class="testimonial-img"
+                                        alt="">
+                                    <h3>Matt Brandon</h3>
+                                    <h4>Freelancer</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        Velmi dobré podmínky a rychlé schválení půjčky. Doporučuji SociáIní Půjčka a.s.
+                                        každému, kdo hledá spolehlivého poskytovatele úvěrů.
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
 
-            </ul>
-          </div><!-- End footer links column-->
+                        <div class="swiper-slide">
+                            <div class="testimonial-wrap">
+                                <div class="testimonial-item">
+                                    <img src="assets/img/testimonials/testimonials-5.jpg" class="testimonial-img"
+                                        alt="">
+                                    <h3>John Larson</h3>
+                                    <h4>Entrepreneur</h4>
+                                    <div class="stars">
+                                        <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i
+                                            class="bi bi-star-fill"></i>
+                                    </div>
+                                    <p>
+                                        <i class="bi bi-quote quote-icon-left"></i>
+                                        Jsem velmi spokojený s profesionálním přístupem a rychlostí poskytovaných
+                                        služeb. SociáIní Půjčka a.s. mi pomohla s mé nečekané finanční potřebou bez
+                                        problémů.
+                                        <i class="bi bi-quote quote-icon-right"></i>
+                                    </p>
+                                </div>
+                            </div>
+                        </div><!-- End testimonial item -->
 
+                    </div>
+                    <div class="swiper-pagination"></div>
+                </div>
+
+            </div>
+        </section><!-- End Testimonials Section -->
+
+    </main><!-- End #main -->
+
+
+    <main id="main">
+
+        <!-- ======= contact Section ======= -->
+        <section id="contact" class="loan">
+            <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+                <div class="row gy-4">
+                    <div class="col-lg-6">
+                        <div class="info-item  d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-map"></i>
+                            <h3>Naše adresa</h3>
+                            <p>A108 Adam Street, New York, NY 535022</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-item d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-envelope"></i>
+                            <h3>Pošlete nám e-mail</h3>
+                            <p>info@SociáIníPůjčkaa.s.com</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                    <div class="col-lg-3 col-md-6">
+                        <div class="info-item  d-flex flex-column justify-content-center align-items-center">
+                            <i class="bi bi-telephone"></i>
+                            <h3>Zavolejte nám</h3>
+                            <p>+1 5589 55488 55</p>
+                        </div>
+                    </div><!-- End Info Item -->
+
+                </div>
+
+                <div class="row gy-4 mt-1">
+
+                    <div class="col-lg-6 ">
+                        <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
+                            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
+                    </div><!-- End Google Maps -->
+                    <div class="col-lg-6" id="contact">
+                        <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">
+                            {{ csrf_field() }}
+                            <div class="row gy-4">
+                                <div class="col-lg-6 form-group">
+                                    <input type="text" name="name" class="form-control" id="name"
+                                        placeholder="Vaše jméno" required>
+                                    {!! $errors->first('name', '<span class="help-block">:message</span>') !!}
+                                </div>
+                                <div class="col-lg-6 form-group">
+                                    <input type="email" class="form-control" name="email" id="email"
+                                        placeholder="Vaše Email" required>
+                                    {!! $errors->first('email', '<span class="help-block">:message</span>') !!}
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="text" class="form-control" name="subject" id="subject" placeholder="Předmě"
+                                    required>
+                                {!! $errors->first('subject', '<span class="help-block">:message</span>') !!}
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="5" placeholder="Zpráva"
+                                    required></textarea>
+                                {!! $errors->first('message', '<span class="help-block">:message</span>') !!}
+                            </div>
+
+                            <div class="text-center"><button type="submit">Odeslat zprávu</button></div>
+                        </form>
+                    </div><!-- End Contact Form -->
+
+
+    </main><!-- End #main -->
+
+    <!-- ======= Footer ======= -->
+    <footer id="footer" class="footer">
+
+        <div class="footer-content position-relative">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-lg-4 col-md-6">
+                        <div class="footer-info">
+                            <h3>SociáIní Půjčka a.s</h3>
+                            <p>
+                                A108 Adam Street <br>
+                                NY 535022, USA<br><br>
+                                <strong>Phone:</strong> +1 5589 55488 55<br>
+                                <strong>Email:</strong> info@SociáIníPůjčkaa.s.com<br>
+                            </p>
+                            <div class="social-links d-flex mt-3">
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-twitter"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-facebook"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-instagram"></i></a>
+                                <a href="#" class="d-flex align-items-center justify-content-center"><i
+                                        class="bi bi-linkedin"></i></a>
+                            </div>
+                        </div>
+                    </div><!-- End footer info column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Useful Links</h4>
+                        <ul>
+                            <li><a href="#">Domů</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Naše služby</h4>
+                        <ul>
+                            <li><a href="#">Web Design</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Hic solutasetp</h4>
+                        <ul>
+                            <li><a href="#">Molestiae accusamus iure</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                    <div class="col-lg-2 col-md-3 footer-links">
+                        <h4>Nobis illum</h4>
+                        <ul>
+                            <li><a href="#">Ipsam</a></li>
+
+                        </ul>
+                    </div><!-- End footer links column-->
+
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-    <div class="footer-legal text-center position-relative">
-      <div class="container">
-        <div class="copyright">
-          &copy; Copyright <strong><span>SociáIní  Půjčka a.s</span></strong>. All Rights Reserved
+        <div class="footer-legal text-center position-relative">
+            <div class="container">
+                <div class="copyright">
+                    &copy; Copyright <strong><span>SociáIní Půjčka a.s</span></strong>. All Rights Reserved
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
 
-  </footer>
-  <!-- End Footer -->
+    </footer>
+    <!-- End Footer -->
 
-  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <div id="preloader"></div>
+    <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
+            class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/form-line/validate.js"></script>
+    <div id="preloader"></div>
 
-  <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+    <!-- Vendor JS Files -->
+    <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/vendor/aos/aos.js"></script>
+    <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+    <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+    <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+    <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+    <script src="assets/vendor/form-line/validate.js"></script>
+
+    <!-- Template Main JS File -->
+    <script src="assets/js/main.js"></script>
 
 </body>
 
