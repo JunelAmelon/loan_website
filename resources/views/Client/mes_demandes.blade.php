@@ -39,8 +39,8 @@
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
       <a href="/" class="logo d-flex align-items-center">
-
-        <h1>SociáIní Půjčka a.s<span>.</span></h1>
+       <h1 style=" text-transform:uppercase;">SociáIní Půjčka</h1><span style="color: white; padding-left:11px;"> a.s</span><span>.</span>
+          
       </a>
 
       <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -70,7 +70,7 @@
 
       </div>
     </div><!-- End Breadcrumbs -->
- 
+
 <!-- ======= Services Section ======= -->
 <section id="services" class="services section-bg">
     @if(session('success'))
@@ -105,7 +105,7 @@
                             <button class="btn readmore stretched-link" style="color:white; background-color:forestgreen; border: 1px solid forestgreen;">Ověřit</button>
                             @if($demande->montant_restant > 0 )
                                 <button class="btn readmore stretched-link" style="color:white; background-color:darkblue; border: 1px solid forestgreen;">Zůstaňte:
- {{ $demande->montant_restant }} CZK</button>
+ {{ $demande->montant_restant }} Kč</button>
                             @elseif($demande->montant_restant <0 || $demande->montant_restant==0 )
                                 <button class="btn readmore stretched-link" style="color:white; background-color:crimson; border: 1px solid crimson;">sleva</button>
                             @endif
@@ -126,8 +126,8 @@
         </div>
     </div>
 </section><!-- End Services Section -->
- 
-  
+
+
   </main><!-- End #main -->
 
   <!-- ======= Footer ======= -->

@@ -22,6 +22,8 @@ class DemandeController extends Controller
     public function create(Request $request)
     { // Vérification si le client a déjà une demande en attente
         $userId = Session::get('id_utilisateur');
+        $lastDemande = Demande::where('client_id', $userId)->orderBy('created_at', 'desc')->first();
+
 
         $demandeEnAttente = Demande::where('client_id', $userId)->where('statut', 'pending')->first();
         $demandeEligble = Demande::where('client_id', $userId)->where('statut', 'valide')->first();
@@ -29,8 +31,13 @@ class DemandeController extends Controller
             return back()->with('error', 'Už máte čekající žádost. Prosím, vyčkejte, než podáte novou žádost.');
         }
         if ($demandeEligble) {
-            return back()->with('error', 'Nejste ještě oprávněni podat novou žádost.');
+            if ($lastDemande && $lastDemande->montant_restant !== 0) {
+                return back()->with('error', 'Vous avez encore un montant restant sur une demande précédente.');
+            }else{
+                return back()->with('error', 'Nejste ještě oprávněni podat novou žádost.');
+            }
         }
+
 
         // Validation des données du formulaire
         $request->validate([
@@ -43,6 +50,7 @@ class DemandeController extends Controller
 
         // Récupération du montant demandé
         $montantDemande = $request->input('montant_voulue');
+        Session::put('montantDemande', $montantDemande);
 
         $dureeAnnees = $request->input('duree');
 
@@ -57,7 +65,7 @@ class DemandeController extends Controller
         $montantMensuel = ($montantDemande * $tauxInteretMensuel) / (1 - pow(1 + $tauxInteretMensuel, -$nombrePaiements));
         Session::put('montantmensuel', $montantMensuel);
         Session::put('dureeAnnees', $dureeAnnees);
-        Session::put('montantDemande', $montantDemande);
+
         // Désactiver les contraintes de clé étrangère
 
         DB::statement('SET FOREIGN_KEY_CHECKS=0');
@@ -72,8 +80,11 @@ class DemandeController extends Controller
             'client_id' => $userId,
             'montant_take' => 0, // Initialiser à 0
             'montant_payer' => 0, // Initialiser à 0
-            'montant_restant' => $montantMensuel*12*$dureeAnnees, // Initialiser à 0
+ 
+            'montant_restant' => round($montantMensuel*12*$dureeAnnees), // Initialiser à 0
+ 
         ]);
+        Session::put('montant_restant', $demande->montant_restant);
 
 
         Client::where('user_id', $userId)->update([

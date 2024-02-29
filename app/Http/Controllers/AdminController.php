@@ -58,10 +58,10 @@ class AdminController extends Controller
             return redirect()->back()->with('error', 'Le montant que vous souhaitez insérer est supérieur au montant restant à payer.');
         }
 
+ 
         // Mettre à jour le montant_take et le montant_restant
         $ancienMontant = $demande->montant_take;
-        $montantVoulu = $demande->montant_voulu;
-
+        $montantVoulu = $demande->montant_restant;
         $nouveauMontantTake = $ancienMontant + $request->input('montant_take');
         $nouveauMontantRestant = $montantVoulu - $nouveauMontantTake;
 
@@ -194,9 +194,9 @@ class AdminController extends Controller
         $montantDemande = Session::get('montantDemande');
         $email = Session::get('email_utilisateur');
         $prenom = Session::get('prenom');
-        $nom = Session::get('name');
+        $name = Session::get('name');
 
-        $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montant_restant, $montantDemande, $email, $prenom, $nom);
+        $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montant_restant, $montantDemande, $name, $prenom, $email);
         SendValideMarkdownMail::dispatch($vmailable, $email);
         // Rediriger avec un message de succès
         return redirect()->route('valider')->with('success', 'La demande a été validée.');

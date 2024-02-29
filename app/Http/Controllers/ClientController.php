@@ -60,10 +60,12 @@ class ClientController extends Controller
         $request->validate([
 
             'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
+            'tel' => 'required|',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'date_naissance' => 'required|string',
             'lieu_naissance' => 'required|string',
+            'code_p' => 'required|string',
             'adresse' => 'required|string',
             'sexe' => 'required|string',
             'password' => 'required|min:6',
@@ -88,6 +90,8 @@ class ClientController extends Controller
                 'id' => $user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
+                'tel' => $request->code_p,
+                'code_P'=> $request->tel,
                 'password' => bcrypt($request->password),
                 'nom' => $request->nom,
                 'prenom' => $request->prenom,
