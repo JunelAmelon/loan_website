@@ -38,7 +38,7 @@
   <header id="header" class="header d-flex align-items-center">
     <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-      <a href="/" class="logo d-flex align-items-center">
+      <a href="/welcome" class="logo d-flex align-items-center">
        <h1 style=" text-transform:uppercase;">SociáIní Půjčka</h1><span style="color: white; padding-left:11px;"> a.s</span><span>.</span>
           
       </a>
