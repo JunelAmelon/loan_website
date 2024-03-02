@@ -38,9 +38,10 @@
     <header id="header" class="header d-flex align-items-center">
         <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
 
-            <a href="index.html" class="logo d-flex align-items-center">
+            <a href="/welcome" class="logo d-flex align-items-center">
 
-                <h1>SociáIní Půjčka a.s<span>.</span></h1>
+         <h1 style=" text-transform:uppercase;">SociáIní Půjčka</h1><span style="color: white; padding-left:11px;"> a.s</span><span>.</span>
+
             </a>
 
             <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
@@ -459,39 +460,47 @@
             <div class="container" data-aos="fade-up" data-aos-delay="100">
 
                 <div class="row gy-4">
-                    <div class="col-lg-6">
+                    <div class="col-md-6">
                         <div class="info-item  d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-map"></i>
                             <h3>Naše adresa</h3>
-                            <p>A108 Adam Street, New York, NY 535022</p>
+                            Dominikánské nám. 196/1 <br>
+                                602 00 Brno<br><br>
+                                Czech Republic
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-3 col-md-6">
+                    <div class=" col-md-6">
                         <div class="info-item d-flex flex-column justify-content-center align-items-center">
                             <i class="bi bi-envelope"></i>
                             <h3>Pošlete nám e-mail</h3>
-                            <p>info@SociáIníPůjčkaa.s.com</p>
+                               hypopodpora@socialnipujka.cz<br>
+                                klient@socialnipujka.cz <br>
+                                informace@socialnipujcka.cz<br>
+                                posta@socialnipujcka.cz <br>
                         </div>
                     </div><!-- End Info Item -->
 
-                    <div class="col-lg-3 col-md-6">
-                        <div class="info-item  d-flex flex-column justify-content-center align-items-center">
-                            <i class="bi bi-telephone"></i>
-                            <h3>Zavolejte nám</h3>
-                            <p>+1 5589 55488 55</p>
-                        </div>
-                    </div><!-- End Info Item -->
 
                 </div>
 
                 <div class="row gy-4 mt-1">
 
-                    <div class="col-lg-6 ">
-                        <iframe
-                            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d12097.433213460943!2d-74.0062269!3d40.7101282!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb89d1fe6bc499443!2sDowntown+Conference+Center!5e0!3m2!1smk!2sbg!4v1539943755621"
-                            frameborder="0" style="border:0; width: 100%; height: 384px;" allowfullscreen></iframe>
-                    </div><!-- End Google Maps -->
+                    <div class="col-lg-6 card ">
+
+                            <h2 style="padding-left:20px;">rozvrh</h2>
+                            <div style="display: flex;flex-direction: column;">
+                            <div style="display: flex;flex-direction:row; padding:20px ">  <span style="padding-right: 5px;">Pondělí </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-17:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;">Úterý </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-17:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;">Středa </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-18:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;">Čtvrtek </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-17:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;">Pátek </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-17:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;">Sobota </span> 09:00-12:00 <span style="padding-left: 5px;"> 12:30-16:00 </span></div>
+                            <div  style="display: flex;flex-direction:row;  padding:20px">  <span style="padding-right: 5px;"> Neděle </span> <span style="padding-left: 5px;">Fermé </span></div>
+                        </div>
+
+
+                    </div>
                     <div class="col-lg-6" id="contact">
                         <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">
                             {{ csrf_field() }}
@@ -534,12 +543,12 @@
 
                     <div class="col-lg-4 col-md-6">
                         <div class="footer-info">
-                            <h3>SociáIní Půjčka a.s</h3>
+                           <div style="display: flex; flex-direction: rows;"> <h3>SociáIní Půjčka </h3> <span style="margin:1%;">a.s</span></div>
                             <p>
-                                A108 Adam Street <br>
-                                NY 535022, USA<br><br>
-                                <strong>Phone:</strong> +1 5589 55488 55<br>
-                                <strong>Email:</strong> info@SociáIníPůjčkaa.s.com<br>
+                                Dominikánské nám. 196/1 <br>
+                                602 00 Brno<br><br>
+                                Czech Republic
+
                             </p>
                             <div class="social-links d-flex mt-3">
                                 <a href="#" class="d-flex align-items-center justify-content-center"><i
@@ -593,14 +602,13 @@
         <div class="footer-legal text-center position-relative">
             <div class="container">
                 <div class="copyright">
-                    &copy; Copyright <strong><span>SociáIní Půjčka a.s</span></strong>. All Rights Reserved
+                    &copy; Copyright <strong><span>SociáIní Půjčka a.s.</span></strong>. All Rights Reserved
                 </div>
             </div>
         </div>
 
     </footer>
     <!-- End Footer -->
-
 
     <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i
             class="bi bi-arrow-up-short"></i></a>
@@ -614,7 +622,7 @@
     <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
     <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
     <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-    <script src="assets/vendor/form-line/validate.js"></script>
+    <script src="assets/vendor/php-email-form/validate.js"></script>
 
     <!-- Template Main JS File -->
     <script src="assets/js/main.js"></script>

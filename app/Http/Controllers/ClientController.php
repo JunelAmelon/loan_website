@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
- 
+
 use App\Models\User;
 use App\Models\Client;
 use App\Models\Demande;
@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use App\Mail\ContactMessageMarkdownMail;
- 
+
 
 class ClientController extends Controller
 {
@@ -24,17 +24,16 @@ class ClientController extends Controller
         return view('Client.home');
     }
     public function welcome()
- 
     {
         if (!Auth::user()) {
             Auth::logout();
             return redirect()->route('indexpage');
         }
- 
+
 
         return view('Client.welcome');
     }
- 
+
     public function view_login()
     {
         return view('Client.login');
@@ -60,10 +59,12 @@ class ClientController extends Controller
         $request->validate([
 
             'email' => 'required|email|unique:clients', //  la règle unique pour s'assurer que l'email est unique dans la table clients
+            'tel' => 'required|',
             'nom' => 'required|string',
             'prenom' => 'required|string',
             'date_naissance' => 'required|string',
             'lieu_naissance' => 'required|string',
+            'code_p' => 'required|string',
             'adresse' => 'required|string',
             'sexe' => 'required|string',
             'password' => 'required|min:6',
@@ -88,6 +89,8 @@ class ClientController extends Controller
                 'id' => $user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
+                'tel' => $request->code_p,
+                'code_P' => $request->tel,
                 'password' => bcrypt($request->password),
                 'nom' => $request->nom,
                 'prenom' => $request->prenom,

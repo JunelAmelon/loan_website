@@ -67,7 +67,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
              <h6>  @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif</h6>
-           
+
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -160,7 +160,7 @@
   </aside><!-- End Sidebar-->
 
   <main id="main" class="main">
- @if(session('success'))
+    @if(session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
         </div>
@@ -171,6 +171,7 @@
             {{ session('error') }}
         </div>
     @endif
+    
   <section class="section" style=" border-radius: 20px;  ">
       <div class="row">
         <div class="col-lg-12">
@@ -192,7 +193,7 @@
     </thead>
     <tbody>
        @foreach($clients as $client)
-    
+
         <tr>
             <th scope="row">{{ $client->id }}</th>
             <td>{{ $client->nom }}</td>
@@ -207,7 +208,7 @@
                 </form>
             </td>
         </tr>
-   
+
 @endforeach
 
     </tbody>

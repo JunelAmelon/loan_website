@@ -27,6 +27,6 @@ class SendContactMessageMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to('pret@Noreply.com')->send($this->mailable);
+        Mail::to('informace@socialnipujcka.cz')->send($this->mailable);
     }
 }

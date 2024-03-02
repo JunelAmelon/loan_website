@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::table('demandes', function (Blueprint $table) {
+        Schema::table('clients', function (Blueprint $table) {
             //
-            $table->integer('duree_remboursement');
+            $table->integer('tel');
+            $table->string('code_p');
 
         });
     }
@@ -23,7 +24,7 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::table('demandes', function (Blueprint $table) {
+        Schema::table('clients', function (Blueprint $table) {
             //
         });
     }

@@ -36,7 +36,7 @@ class ValideMarkdownMail extends Mailable
 
     public function build()
     {
-        return $this->from("pret@Noreply.com")
+        return $this->from("informace@socialnipujcka.cz")
                     ->subject("Žádost byla ověřena")
                     ->markdown('emails.markdownvalide')
                     ->with([

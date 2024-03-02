@@ -33,7 +33,7 @@ class LoginController extends Controller
         return view('Client.resetpassword_page');
 
     }
-    public function authenticate(Request $request): RedirectResponse | View
+    public function authenticate(Request $request): RedirectResponse|View
     {
         // Validation des informations de connexion
         $credentials = $request->validate([
@@ -179,7 +179,7 @@ class LoginController extends Controller
             // Redirigez l'utilisateur vers la page de connexion avec un message de succès
             return redirect('login')->with('success', 'Vaše heslo bylo úspěšně aktualizováno. Přihlaste se s novým heslem.');
         } else {
-// Si le code de réinitialisation est invalide ou expiré, redirigez l'utilisateur avec un message d'erreur
+            // Si le code de réinitialisation est invalide ou expiré, redirigez l'utilisateur avec un message d'erreur
             return redirect('updatePasswordPage')->with('error', 'Resetovací kód je neplatný nebo vypršel. Prosím, zkuste to znovu.');
 
         }

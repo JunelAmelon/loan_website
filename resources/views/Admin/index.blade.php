@@ -64,7 +64,11 @@
 
           <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
             <img src="assets-admin/img/profile-img.jpg" alt="Profile" class="rounded-circle">
-            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">  @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif</span>
+            <span class="d-none d-md-block dropdown-toggle ps-2" style="color: white;">
+            @if(Session::has('prenom-admin'))
+                {{ Session::get('prenom-admin') }}
+            @endif
+            </span>
           </a><!-- End Profile Iamge Icon -->
 
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -72,8 +76,8 @@
              <h6>
               @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif
 
-             </h6> 
-               
+             </h6>
+
             </li>
             <li>
               <hr class="dropdown-divider">
@@ -294,7 +298,7 @@
             </span>
         </td>
         <td class="scrolling-text">{{ $demande->description }}</td>
-       
+
     </tr>
 @endforeach
 
@@ -394,7 +398,7 @@
     </div>
 
   </footer><!-- End Footer -->
-  
+
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 

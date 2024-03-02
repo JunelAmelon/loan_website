@@ -22,7 +22,7 @@ class DemandeController extends Controller
     public function create(Request $request)
     { // Vérification si le client a déjà une demande en attente
         $userId = Session::get('id_utilisateur');
-        $lastDemande = Demande::where('client_id', $userId)->orderBy('created_at', 'desc')->first();
+        $lastDemande = Demande::where('client_id', $userId)->where('statut', 'valide')->orderBy('created_at', 'desc')->first();
 
 
         $demandeEnAttente = Demande::where('client_id', $userId)->where('statut', 'pending')->first();
@@ -31,11 +31,11 @@ class DemandeController extends Controller
             return back()->with('error', 'Už máte čekající žádost. Prosím, vyčkejte, než podáte novou žádost.');
         }
         if ($demandeEligble) {
-            if ($lastDemande && $lastDemande->montant_restant !== 0) {
-                return back()->with('error', 'Vous avez encore un montant restant sur une demande précédente.');
-            }else{
-                return back()->with('error', 'Nejste ještě oprávněni podat novou žádost.');
-            }
+            if ($lastDemande && round($lastDemande->montant_restant) !== 0.0) {
+                return back()->with('error', 'Dosud jste svou žádost nevrátili v plné výši, poslední žádost byla ověřena.');
+            }// else{
+            //     return back()->with('error', 'Nejste ještě oprávněni podat novou žádost.');
+            // }
         }
 
 
@@ -63,6 +63,7 @@ class DemandeController extends Controller
 
         // Calcul du montant mensuel à rembourser
         $montantMensuel = ($montantDemande * $tauxInteretMensuel) / (1 - pow(1 + $tauxInteretMensuel, -$nombrePaiements));
+        $montantMensuel = round($montantMensuel);
         Session::put('montantmensuel', $montantMensuel);
         Session::put('dureeAnnees', $dureeAnnees);
 
@@ -80,7 +81,8 @@ class DemandeController extends Controller
             'client_id' => $userId,
             'montant_take' => 0, // Initialiser à 0
             'montant_payer' => 0, // Initialiser à 0
-            'montant_restant' => round($montantMensuel*12*$dureeAnnees), // Initialiser à 0
+            'montant_restant' => round($montantMensuel * 12 * $dureeAnnees), // Initialiser à 0
+
         ]);
         Session::put('montant_restant', $demande->montant_restant);
 

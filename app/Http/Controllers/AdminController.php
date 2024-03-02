@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendValideMarkdownMail;
-use App\Mail\ValideMarkdownMail;
-use App\Models\Admin;
-use App\Models\Demande;
 use App\Models\User;
+use App\Models\Admin;
+use App\Models\Client;
+use App\Models\Demande;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use App\Mail\ValideMarkdownMail;
 use Illuminate\Support\Facades\DB;
+use App\Jobs\SendValideMarkdownMail;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
@@ -37,46 +38,50 @@ class AdminController extends Controller
         $montantTotal = Demande::sum('montant_voulu');
         return $montantTotal;
     }
-   public function update_montant(Request $request, $id_demande)
-{
-    // Validation des données du formulaire
-    $request->validate([
-        'montant_take' => 'required|numeric',
-    ]);
-
-    try {
-        // Récupérer la demande associée à l'id_demande
-        $demande = Demande::findOrFail($id_demande);
-
-        // Vérifier si le montant_restant est déjà à 0, alors ne pas effectuer la mise à jour
-        if ($demande->montant_restant == 0) {
-            return redirect()->back()->with('error', 'Le montant restant est déjà à 0 pour ce client.');
-        }
-
-        // Vérifier si le montant à mettre à jour est supérieur au montant restant
-        if ($request->input('montant_take') > $demande->montant_restant) {
-            return redirect()->back()->with('error', 'Le montant que vous souhaitez insérer est supérieur au montant restant à payer.');
-        }
-
-
-        // Mettre à jour le montant_take et le montant_restant
-        $ancienMontant = $demande->montant_take;
-        $montantVoulu = $demande->montant_restant;
-
-        $nouveauMontantTake = $ancienMontant + $request->input('montant_take');
-        $nouveauMontantRestant = $montantVoulu - $nouveauMontantTake;
-
-        // Mettre à jour la demande
-        $demande->update([
-            'montant_take' => $nouveauMontantTake,
-            'montant_restant' => $nouveauMontantRestant,
+    public function update_montant(Request $request, $id_demande)
+    {
+        // Validation des données du formulaire
+        $request->validate([
+            'montant_take' => ['required', 'numeric', function ($attribute, $value, $fail) {
+                if ($value < 0) {
+                    $fail('Le montant doit être positif.');
+                    return redirect()->back()->with('error', 'Le montant doit être positif.');
+                }
+            }],
         ]);
 
-        return redirect()->back()->with('success', 'Montant mis à jour avec succès.');
-    } catch (\Exception $e) {
-        return redirect()->back()->with('error', 'Erreur lors de la mise à jour du montant.');
+        try {
+            // Récupérer la demande associée à l'id_demande
+            $demande = Demande::findOrFail($id_demande);
+
+            // Vérifier si le montant_restant est déjà à 0, alors ne pas effectuer la mise à jour
+            if ($demande->montant_restant == 0) {
+                return redirect()->back()->with('error', 'Le montant restant est déjà à 0 pour ce client.');
+            }
+
+            // Vérifier si le montant à mettre à jour est supérieur au montant restant
+            if ($request->input('montant_take') > $demande->montant_restant) {
+                return redirect()->back()->with('error', 'Le montant que vous souhaitez insérer est supérieur au montant restant à payer.');
+            }
+
+
+            // Mettre à jour le montant_take et le montant_restant
+            $ancienMontant = $demande->montant_take;
+            $montantVoulu = $demande->montant_restant;
+            $nouveauMontantTake = $ancienMontant + $request->input('montant_take');
+            $nouveauMontantRestant = $montantVoulu - $nouveauMontantTake;
+
+            // Mettre à jour la demande
+            $demande->update([
+                'montant_take' => $nouveauMontantTake,
+                'montant_restant' => $nouveauMontantRestant,
+            ]);
+
+            return redirect()->back()->with('success', 'Montant mis à jour avec succès.');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Erreur lors de la mise à jour du montant.');
+        }
     }
-}
 
 
     public function getDemandeApprouveCount()
@@ -115,10 +120,11 @@ class AdminController extends Controller
     }
 
     public function listeClients()
-    {if (!Auth::user()) {
-        Auth::logout();
-        return redirect()->route('admin/login');
-    }
+    {
+        if (!Auth::user()) {
+            Auth::logout();
+            return redirect()->route('admin/login');
+        }
 
         $clients = DB::table('clients')
             ->leftJoin('demandes', 'clients.id', '=', 'demandes.client_id')
@@ -188,14 +194,23 @@ class AdminController extends Controller
         $loan = Demande::findOrFail($id_demande);
 
         // Mettre à jour le champ 'statut' avec la valeur 'valide'
+        $dem = Demande::where('id', $id_demande)->first();
         $loan->update(['statut' => 'valide']);
-        $montantMensuel = Session::get('montantmensuel');
-        $dureeAnnees = Session::get('dureeAnnees');
-        $montant_restant = Session::get('montant_restant');
-        $montantDemande = Session::get('montantDemande');
-        $email = Session::get('email_utilisateur');
-        $prenom = Session::get('prenom');
-        $name = Session::get('name');
+        // $montantMensuel = Session::get('montantmensuel');
+        // $dureeAnnees = Session::get('dureeAnnees');
+        // $montant_restant = Session::get('montant_restant');
+        // $montantDemande = Session::get('montantDemande');
+        $montantMensuel = $dem->payement_months;
+        $dureeAnnees = $dem->duree_remboursement;
+        $montant_restant = $dem->montant_restant;
+        $montantDemande = $dem->montant_voulu;
+        $cl = Client::where('id', $dem->client_id)->first();
+        $email = $cl->email;
+        $prenom = $cl->prenom;
+        $name = $cl->nom;
+        // $email = Session::get('email_utilisateur');
+        // $prenom = Session::get('prenom');
+        // $name = Session::get('name');
 
         $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montant_restant, $montantDemande, $name, $prenom, $email);
         SendValideMarkdownMail::dispatch($vmailable, $email);
@@ -234,7 +249,7 @@ class AdminController extends Controller
 
         $user_mail = Session::get('email-admin');
 
-// Validation des données du formulaire
+        // Validation des données du formulaire
         $request->validate([
             'email' => 'required|email',
             'nom' => 'required|string',
@@ -242,7 +257,7 @@ class AdminController extends Controller
 
         ]);
 
-// Récupérer l'utilisateur à partir de la base de données
+        // Récupérer l'utilisateur à partir de la base de données
         $admin_tab_user = User::where('email', $user_mail)->first();
         $admin_id = $admin_tab_user->id;
         $admin = Admin::findOrFail($admin_id);
@@ -251,7 +266,7 @@ class AdminController extends Controller
             'email' => $request->input('email'),
         ]);
 
-// Mettre à jour les informations du profil client
+        // Mettre à jour les informations du profil client
         $admin->update([
             'email' => $request->input('email'),
             'nom' => $request->input('nom'),
@@ -259,7 +274,7 @@ class AdminController extends Controller
 
         ]);
 
-// Redirection avec un message de succès
+        // Redirection avec un message de succès
         return redirect()->route('profile')->with('success', 'Profil mis à jour avec succès.');
 
     }
