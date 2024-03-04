@@ -194,17 +194,16 @@ class AdminController extends Controller
         $loan = Demande::findOrFail($id_demande);
 
         // Mettre à jour le champ 'statut' avec la valeur 'valide'
-        $dem = Demande::where('id', $id_demande)->first();
         $loan->update(['statut' => 'valide']);
         // $montantMensuel = Session::get('montantmensuel');
         // $dureeAnnees = Session::get('dureeAnnees');
         // $montant_restant = Session::get('montant_restant');
         // $montantDemande = Session::get('montantDemande');
-        $montantMensuel = $dem->payement_months;
-        $dureeAnnees = $dem->duree_remboursement;
-        $montant_restant = $dem->montant_restant;
-        $montantDemande = $dem->montant_voulu;
-        $cl = Client::where('id', $dem->client_id)->first();
+        $montantMensuel = $loan->payement_months;
+        $dureeAnnees = $loan->duree_remboursement;
+        $montant_restant = $loan->montant_restant;
+        $montantDemande = $loan->montant_voulu;
+        $cl = Client::findOrFail($loan->client_id);
         $email = $cl->email;
         $prenom = $cl->prenom;
         $name = $cl->nom;
@@ -212,7 +211,7 @@ class AdminController extends Controller
         // $prenom = Session::get('prenom');
         // $name = Session::get('name');
 
-        $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montant_restant, $montantDemande, $name, $prenom, $email);
+        $vmailable = new ValideMarkdownMail($montantMensuel, $dureeAnnees, $montantDemande, $montant_restant, $name, $prenom, $email);
         SendValideMarkdownMail::dispatch($vmailable, $email);
         // Rediriger avec un message de succès
         return redirect()->route('valider')->with('success', 'La demande a été validée.');

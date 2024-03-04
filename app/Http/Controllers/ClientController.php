@@ -89,8 +89,8 @@ class ClientController extends Controller
                 'id' => $user->id,
                 'user_id' => $user->id,
                 'email' => $user->email,
-                'tel' => $request->code_p,
-                'code_P' => $request->tel,
+                'tel' => $request->tel,
+                'code_p' => $request->code_p,
                 'password' => bcrypt($request->password),
                 'nom' => $request->nom,
                 'prenom' => $request->prenom,
@@ -217,13 +217,18 @@ class ClientController extends Controller
             'subject' => 'required|min:3',
             'message' => 'required|min:10',
         ]);
-
         $mailable = new ContactMessageMarkdownMail($request->name, $request->email, $request->subject, $request->message);
-        // Envoyer la tâche à la file d'attente
-        SendContactMessageMail::dispatch($mailable);
-        return redirect()
+        try {
+            // Envoyer la tâche à la file d'attente
+            SendContactMessageMail::dispatch($mailable);
+            return redirect()
             ->back()
             ->with('message', 'Vaše zpráva byla úspěšně odeslána!');
+        }catch (\Exception $e) {
+            return redirect()->back()
+            ->with('message', 'erreur: ' . $e->getMessage() . ', message: ' . print_r($mailable, true));
+    }
+
 
     }
 }

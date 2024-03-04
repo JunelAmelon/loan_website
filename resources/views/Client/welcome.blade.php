@@ -502,6 +502,11 @@
 
                     </div>
                     <div class="col-lg-6" id="contact">
+                        @if(session('message'))
+                            <div class="alert alert-success">
+                            {{ session('message') }}
+                            </div>
+                        @endif
                         <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">
                             {{ csrf_field() }}
                             <div class="row gy-4">

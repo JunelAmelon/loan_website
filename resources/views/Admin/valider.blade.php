@@ -30,7 +30,7 @@
   <header id="header" class="header fixed-top d-flex align-items-center">
 
     <div class="d-flex align-items-center justify-content-between">
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="/dashboard" class="logo d-flex align-items-center">
         <img src="assets/img/logo.png" alt="">
         <span class="d-none d-lg-block">GestAdmin</span>
       </a>
@@ -67,7 +67,7 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
              <h6> @if (Session::has('prenom')){{ Session::get('prenom') }} @endif</h6>
-           
+
             </li>
             <li>
               <hr class="dropdown-divider">
