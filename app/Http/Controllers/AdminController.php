@@ -42,12 +42,16 @@ class AdminController extends Controller
     {
         // Validation des données du formulaire
         $request->validate([
-            'montant_take' => ['required', 'numeric', function ($attribute, $value, $fail) {
-                if ($value < 0) {
-                    $fail('Le montant doit être positif.');
-                    return redirect()->back()->with('error', 'Le montant doit être positif.');
+            'montant_take' => [
+                'required',
+                'numeric',
+                function ($attribute, $value, $fail) {
+                    if ($value < 0) {
+                        $fail('Le montant doit être positif.');
+                        return redirect()->back()->with('error', 'Le montant doit être positif.');
+                    }
                 }
-            }],
+            ],
         ]);
 
         try {

@@ -498,6 +498,11 @@
                             {{ session('message') }}
                             </div>
                         @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">
                             {{ csrf_field() }}
                             <div class="row gy-4">

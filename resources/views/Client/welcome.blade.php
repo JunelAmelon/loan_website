@@ -504,7 +504,12 @@
                     <div class="col-lg-6" id="contact">
                         @if(session('message'))
                             <div class="alert alert-success">
-                            {{ session('message') }}
+                                {{ session('message') }}
+                            </div>
+                        @endif
+                        @if(session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
                             </div>
                         @endif
                         <form action="{{ route('contact.store') }}" method="post" role="form" class="form-line">

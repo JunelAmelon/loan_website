@@ -222,12 +222,12 @@ class ClientController extends Controller
             // Envoyer la tâche à la file d'attente
             SendContactMessageMail::dispatch($mailable);
             return redirect()
-            ->back()
-            ->with('message', 'Vaše zpráva byla úspěšně odeslána!');
-        }catch (\Exception $e) {
+                ->back()
+                ->with('message', 'Vaše zpráva byla úspěšně odeslána!');
+        } catch (\Exception $e) {
             return redirect()->back()
-            ->with('message', 'erreur: ' . $e->getMessage() . ', message: ' . print_r($mailable, true));
-    }
+                ->with('error', 'Při odesílání e-mailu došlo k chybě, zkuste to prosím znovu později');
+        }
 
 
     }

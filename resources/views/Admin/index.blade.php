@@ -74,7 +74,9 @@
           <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
             <li class="dropdown-header">
              <h6>
-              @if (Session::has('prenom-admin')){{ Session::get('prenom-admin') }} @endif
+                @if (Session::has('prenom-admin'))
+                    {{ Session::get('prenom-admin') }}
+                @endif
 
              </h6>
 
@@ -284,23 +286,23 @@
                </tr>
             </thead>
             <tbody>
-              @foreach($demandes as $demande)
-    <tr>
-        <th scope="row"><a href="#">{{ $demande->id }}</a></th>
-        <td>{{ $demande->client->nom }} {{ $demande->client->prenom }}</td>
-        <td class="">{{ $demande->projet }}</td>
-         <td>{{ $demande->client->rib }}</td>
-        <td>${{ $demande->montant_voulu }}</td>
-        <td>${{ $demande->montant_restant <0 ? 0 :$demande->montant_restant }}</td>
-        <td>
-            <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
-                {{ $demande->statut }}
-            </span>
-        </td>
-        <td class="scrolling-text">{{ $demande->description }}</td>
+            @foreach($demandes as $demande)
+                <tr>
+                    <th scope="row"><a href="#">{{ $demande->id }}</a></th>
+                        <td>{{ $demande->client->nom }} {{ $demande->client->prenom }}</td>
+                        <td class="">{{ $demande->projet }}</td>
+                        <td>{{ $demande->client->rib }}</td>
+                        <td>${{ $demande->montant_voulu }}</td>
+                        <td>${{ $demande->montant_restant <0 ? 0 :$demande->montant_restant }}</td>
+                        <td>
+                                <span class="badge bg-{{ $demande->statut == 'valide' ? 'success' : ($demande->statut == 'pending' ? 'warning' : 'danger') }}">
+                                {{ $demande->statut }}
+                                </span>
+                        </td>
+                        <td class="scrolling-text">{{ $demande->description }}</td>
 
-    </tr>
-@endforeach
+                </tr>
+            @endforeach
 
             </tbody>
          </table>
